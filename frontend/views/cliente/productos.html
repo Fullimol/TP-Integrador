@@ -22,22 +22,31 @@
     <!-- Barra de navegación -->
     <nav>
         <ul>
-            <li><a href="bienvenida.html">Inicio</a></li>
-            <li><a href="productos.html" class="active">Productos</a></li>
-            <li><a href="carrito.html">Carrito</a></li>
+            <li class="salir-button"><a href="bienvenida.html">Salir</a></li>
         </ul>
     </nav>
 
     <!-- Contenedor principal -->
     <main>
+        <h1 style="text-align: center;">Productos</h1>
+        <div class="container-buttons">
+            <p>Filtrar por:</p>
+            <button type="button" name="todos-button">Todos</button>
+            <button type="button" name="xbox-button">Xbox</button>
+            <button type="button" name="play-button">PlayStation</button>
+        </div>
         <!-- Aquí irá el contenido dinámico -->
-        <h1>Productos</h1>
+
+        <div id="productos-container">
+            <p>(aca van todos los productos)</p>
+        </div>
     </main>
 
     <!-- Pie de página -->
     <footer>
-        <p>(acá va el footer)</p>
+        <a href="carrito.html" class="footer-btn">Carrito</a>
     </footer>
+
 </body>
 
 <script src="../../scripts/utils.js" defer></script>

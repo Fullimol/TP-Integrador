@@ -6,3 +6,9 @@ Se usa típicamente para funciones reutilizables o herramientas auxiliares que n
 - Manipulación de strings.
 
 */
+
+// al dar click en "Salir" borro el nombre del localStorage
+const btnSalir = document.querySelector('.salir-button');
+btnSalir.addEventListener('click', () => {
+    localStorage.removeItem('nombre');
+});
