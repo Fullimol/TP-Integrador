@@ -1,0 +1,1 @@
+/* Logica de la pagina donde muestra el ticket */
