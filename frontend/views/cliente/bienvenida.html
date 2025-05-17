@@ -22,10 +22,11 @@
     <!-- Barra de navegación -->
     <nav>
         <ul>
-            <li><a href="bienvenida.html" class="active">Inicio</a></li>
+            <!-- Esto no se muestra en la bienvenida -->
+            <!-- <li><a href="bienvenida.html" class="active">Inicio</a></li>
             <li><a href="productos.html">Productos</a></li>
             <li><a href="carrito.html">Carrito</a></li>
-            <li><a href="ticket.html">Ticket</a></li>
+            <li><a href="ticket.html">Ticket</a></li> -->
         </ul>
     </nav>
 
@@ -33,6 +34,14 @@
     <main>
         <!-- Aquí irá el contenido dinámico -->
         <h1>Bienvenida</h1>
+
+
+        <form id="form-bienvenida">
+            <label for="nombre-bienvenida">¿Cómo te llamás?</label>
+            <input type="text" id="nombre-bienvenida" name="nombre">
+            <button type="submit" id="btn-bienvenida">COMENZAR</button>
+        </form>
+
     </main>
 
     <!-- Pie de página -->

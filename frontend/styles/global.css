@@ -29,6 +29,10 @@ nav ul li a {
     transition: background 0.3s ease; /* Efecto de transición */
 }
 
+nav ul li a:hover {
+    background-color: violet;
+}
+
 .active {
     background-color: purple; /* Color de fondo activo */
     color: #fff; /* Color de texto activo */

@@ -1,1 +1,62 @@
 /* Estilos para la pagina de bienvenida */
+
+/* Estilos base */
+#form-bienvenida {
+    max-width: 400px;
+    margin: 50px auto;
+    padding: 2rem;
+    background-color: #f5f5f5;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+#form-bienvenida label {
+    font-size: 1.1rem;
+    font-weight: 500;
+    color: #333;
+}
+
+#form-bienvenida input {
+    padding: 10px;
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    transition: border-color 0.3s;
+}
+
+#form-bienvenida input:focus {
+    border-color: #007BFF;
+    outline: none;
+}
+
+#form-bienvenida button {
+    padding: 10px;
+    font-size: 1rem;
+    background-color: purple;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+#form-bienvenida button:hover {
+    background-color: violet;
+}
+
+/* Responsive: pantallas pequeñas */
+@media (max-width: 500px) {
+    #form-bienvenida {
+        margin: 20px;
+        padding: 1.5rem;
+    }
+
+    #form-bienvenida label,
+    #form-bienvenida input,
+    #form-bienvenida button {
+        font-size: 1rem;
+    }
+}
