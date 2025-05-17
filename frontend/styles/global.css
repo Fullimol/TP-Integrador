@@ -1,5 +1,24 @@
 /* Para definir estilos generales que se aplican a toda la aplicación. Ejemplo, el navbar o el header. */
 
+
+html,
+body {
+    height: 100%;
+    margin: 0;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+main {
+    flex: 1;
+    /* Ocupa el espacio restante entre header y footer */
+}
+
+
 /* ===== Navbar ===== */
 nav {
     background-color: grey;
@@ -88,7 +107,9 @@ footer {
     padding: 1rem;
     background-color: grey;
     text-align: center;
+    padding: 1rem;
 }
+
 
 .footer-btn {
     display: inline-block;
@@ -127,7 +148,7 @@ footer {
     }
 
     .footer-btn {
-        width: 100%;
+        width: 50%;
         font-size: 1.1rem;
     }
 }
