@@ -1,6 +1,6 @@
 /* Para definir estilos generales que se aplican a toda la aplicación. Ejemplo, el navbar o el header. */
 
-/* ===== Estilos del Navbar ===== */
+/* ===== Navbar ===== */
 nav {
     background-color: grey; /* Color de fondo oscuro */
     padding: 15px 0; /* Espaciado superior e inferior */
@@ -22,18 +22,65 @@ nav ul li {
 
 nav ul li a {
     text-decoration: none; /* Quita el subrayado */
-    color: white; /* Color del texto */
+    color: black; /* Color del texto */
     font-size: 18px;
     padding: 10px 15px;
     border-radius: 5px; /* Bordes redondeados */
     transition: background 0.3s ease; /* Efecto de transición */
 }
 
-nav ul li a:hover {
-    background-color: #555; /* Cambio de color al pasar el mouse */
-}
-
 .active {
-    background-color: #007bff; /* Color de fondo activo */
+    background-color: purple; /* Color de fondo activo */
     color: #fff; /* Color de texto activo */
 }
+/* ===== Navbar FIN ===== */
+
+/* ===== header logo ===== */
+header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem 2rem;
+    background-color: grey;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    flex-wrap: wrap; /* permite reacomodar en pantallas chicas */
+}
+
+header img {
+    width: 120px;
+    height: auto;
+    border-radius: 50%;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.alumnos-container {
+    display: block;
+    gap: 1rem;
+    font-weight: 500;
+    flex-wrap: wrap;
+}
+
+.alumnos-container p {
+    margin: 0;
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+    header {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    .alumnos-container {
+        flex-direction: column;
+        gap: 0.5rem;
+        margin-top: 1rem;
+    }
+
+    header img {
+        width: 100px;
+    }
+}
+
+/* ===== header logo FIN ===== */
