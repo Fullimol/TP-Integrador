@@ -10,7 +10,7 @@ let carrito = [];
 let productos = [];
 
 console.log(localStorage.getItem('nombre')); // obtener nombre del localStorage
-localStorage.removeItem('carrito'); //vaciar local storage carrito:
+// localStorage.removeItem('carrito'); //vaciar local storage carrito:
 
 
 function obtenerProductos() {
@@ -18,80 +18,126 @@ function obtenerProductos() {
         .then(response => response.json())
         .then(data => {
             productos = data;
+            carrito = JSON.parse(localStorage.getItem('carrito')) || [];
             mostrarProductos(productos);
             console.log("PRODUCTOS", productos);
+            console.log("CARRITO", carrito);
         })
         .catch(error => console.error('Error al cargar productos:', error));
 
 }
 
 function mostrarProductos(productos) {
+    contenedor.innerHTML = ''; // limpiar antes de mostrar
+
     productos.forEach(producto => {
         const card = document.createElement('div');
         card.className = 'card';
-        card.dataset.plataforma = producto.plataforma.toLowerCase(); // necesario para filtrar
+        card.dataset.plataforma = producto.plataforma.toLowerCase();
+
+        // Verificar si ya está en el carrito
+        const enCarrito = carrito.some(p => p.id === producto.id);
 
         card.innerHTML = `
-        <img src="${producto.imagen}" alt="${producto.nombre}">
-        <div class="card-content">
-          <h3>${producto.nombre}</h3>
-          <p>Plataforma: ${producto.plataforma}</p>
-          <p>Precio: $${producto.precio.toFixed(2)}</p>
-          <button class="agregar-button" data-id="${producto.id}">Agregar al carrito</button>
-        </div>
-      `;
+            <img src="${producto.imagen}" alt="${producto.nombre}">
+            <div class="card-content">
+              <h3>${producto.nombre}</h3>
+              <p>Plataforma: ${producto.plataforma}</p>
+              <p>Precio: $${producto.precio.toFixed(2)}</p>
+
+              <button class="agregar-button" data-id="${producto.id}">
+                ${enCarrito ? 'Agregar otro más' : 'Agregar al carrito'}
+              </button>
+
+              ${enCarrito ? `<p>Cantidad en carrito: ${carrito.find(p => p.id === producto.id).cantidad}</p>` : ''}
+
+            <button class="quitar-button ${enCarrito ? '' : 'hidden'}" data-id="${producto.id}">
+                ${enCarrito ? 'Eliminar uno' : ''}
+              </button>
+
+            </div>
+        `;
 
         contenedor.appendChild(card);
     });
 }
 
 
+
 // filtrar los productos
 todosButton.addEventListener('click', () => {
-  filtrarProductos('todos');
+    filtrarProductos('todos');
 });
 
 xboxButton.addEventListener('click', () => {
-  filtrarProductos('xbox');
+    filtrarProductos('xbox');
 });
 
 playButton.addEventListener('click', () => {
-  filtrarProductos('playstation');
+    filtrarProductos('playstation');
 });
 
 function filtrarProductos(filtro) {
-  const cards = document.querySelectorAll('.card');
+    const cards = document.querySelectorAll('.card');
 
-  cards.forEach(card => {
-    const plataforma = card.dataset.plataforma;
-    if (filtro === 'todos' || plataforma === filtro) {
-      card.classList.remove('hidden');
-    } else {
-      card.classList.add('hidden');
-    }
-  });
+    cards.forEach(card => {
+        const plataforma = card.dataset.plataforma;
+        if (filtro === 'todos' || plataforma === filtro) {
+            card.classList.remove('hidden');
+        } else {
+            card.classList.add('hidden');
+        }
+    });
 }
 
 
 // guardar carrito en localStorage
-contenedor.addEventListener('click', (e) => {
-  if (e.target.classList.contains('agregar-button')) {
-    const productoId = parseInt(e.target.getAttribute('data-id'));
-    fetch(url)
-      .then(res => res.json())
-      .then(productos => {
-        const producto = productos.find(p => p.id === productoId);
-        if (producto) {
-          carrito.push(producto);
-          guardarCarrito();
-          console.log(carrito);
+function agregarAlCarrito(id) {
+    const index = carrito.findIndex(p => p.id === id);
+
+    if (index !== -1) {
+        carrito[index].cantidad += 1;
+    } else {
+        const producto = productos.find(p => p.id === id);
+        carrito.push({ ...producto, cantidad: 1 });
+    }
+
+    guardarCarrito();
+    mostrarProductos(productos);
+    console.log(carrito);
+}
+
+function quitarDelCarrito(id) {
+    const index = carrito.findIndex(p => p.id === id);
+
+    if (index !== -1) {
+        if (carrito[index].cantidad > 1) {
+            carrito[index].cantidad -= 1;
+        } else {
+            carrito.splice(index, 1); // eliminar del carrito
         }
-      });
-  }
+    }
+
+    guardarCarrito();
+    mostrarProductos(productos);
+    console.log(carrito);
+}
+
+contenedor.addEventListener('click', (e) => {
+    const id = parseInt(e.target.dataset.id);
+
+    if (e.target.classList.contains('agregar-button')) {
+        agregarAlCarrito(id);
+    }
+
+    if (e.target.classList.contains('quitar-button')) {
+        quitarDelCarrito(id);
+    }
 });
 
+
 function guardarCarrito() {
-  localStorage.setItem('carrito', JSON.stringify(carrito));
+    localStorage.setItem('carrito', JSON.stringify(carrito));
 }
 
 

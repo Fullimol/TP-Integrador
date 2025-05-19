@@ -90,7 +90,21 @@
     background-color: violet;
 }
 
+.quitar-button {
+    margin-top: 0.2rem;
+    padding: 10px 20px;
+    font-size: 1rem;
+    border: none;
+    background-color: rgb(255, 0, 76);
+    color: white;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
 
+.quitar-button:hover {
+    background-color: violet;
+}
 
 
 
