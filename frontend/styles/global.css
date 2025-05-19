@@ -82,7 +82,13 @@ header {
     background-color: grey;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     flex-wrap: wrap;
-    /* permite reacomodar en pantallas chicas */
+}
+
+.header-left {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    flex-wrap: wrap;
 }
 
 header img {
@@ -93,15 +99,35 @@ header img {
 }
 
 .alumnos-container {
-    display: block;
-    gap: 1rem;
+    display: flex;
     font-weight: 500;
-    flex-wrap: wrap;
+    justify-content: center;
+    background-color: grey;
 }
 
 .alumnos-container p {
-    margin: 0;
+    margin-left: 2rem;
 }
+
+#btn-darkMode {
+    margin-right: 2rem;
+    background-color: transparent;
+    border: none;
+    font-size: 2rem;
+    cursor: pointer;
+    color: white;
+    /* o negro si el fondo es claro */
+    padding: 0.5rem;
+    transition: transform 0.2s ease;
+    background-color: whitesmoke;
+    border-radius: 50%;
+}
+
+#btn-darkMode:hover {
+    transform: scale(1.1);
+}
+
+
 
 /* footer */
 footer {
@@ -129,9 +155,17 @@ footer {
     background-color: violet;
 }
 
+
+/* cambios de estilos */
 .hidden {
     display: none;
 }
+
+.dark-mode {
+    background-color: #333 !important;
+    color: #fff !important;
+}
+
 
 
 /* Responsive */
