@@ -1,5 +1,5 @@
 /* Logica de la pagina del carrito */
-    const contenedor = document.getElementById('carrito-container');
+const contenedor = document.getElementById('carrito-container');
 
 // obtener carrito del localStorage
 const carrito = JSON.parse(localStorage.getItem('carrito')) || [];
@@ -7,7 +7,7 @@ const productos = JSON.parse(localStorage.getItem('productos')) || [];
 console.log(carrito);
 
 
-function mostrarEnCarrito(){
+function mostrarEnCarrito() {
 
     contenedor.innerHTML = ''; // limpiar antes de mostrar
 
@@ -19,22 +19,23 @@ function mostrarEnCarrito(){
         card.innerHTML = `
             <img src="${producto.imagen}" alt="${producto.nombre}">
             <div class="card-content">
-              <h3>${producto.nombre}</h3>
-              <p>Plataforma: ${producto.plataforma}</p>
-              <p>Precio: $${producto.precio.toFixed(2)}</p>
-
-              <button class="agregar-button" data-id="${producto.id}">
-                ${enCarrito ? 'Agregar otro más' : 'Agregar al carrito'}
-              </button>
-
-              ${enCarrito ? `<p>Cantidad en carrito: ${carrito.find(p => p.id === producto.id).cantidad}</p>` : ''}
-
-            <button class="quitar-button ${enCarrito ? '' : 'hidden'}" data-id="${producto.id}">
-                ${enCarrito ? 'Eliminar uno' : ''}
-              </button>
-
+                <div class="card-info">
+                <h3>${producto.nombre}</h3>
+                <p>Plataforma: ${producto.plataforma}</p>
+                <p>Precio: $${producto.precio.toFixed(2)}</p>
+                ${enCarrito ? `<p>Cantidad en carrito: ${carrito.find(p => p.id === producto.id).cantidad}</p>` : ''}
+                </div>
+                <div class="card-buttons">
+                <button class="agregar-button" data-id="${producto.id}">
+                    ${enCarrito ? 'Agregar otro más' : 'Agregar al carrito'}
+                </button>
+                <button class="quitar-button ${enCarrito ? '' : 'hidden'}" data-id="${producto.id}">
+                    ${enCarrito ? 'Eliminar uno' : ''}
+                </button>
+                </div>
             </div>
-        `;
+            `;
+
         contenedor.appendChild(card);
     });
 }
