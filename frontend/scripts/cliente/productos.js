@@ -65,17 +65,28 @@ function mostrarProductos(productos) {
 
 
 // filtrar los productos
+
+//                  (!)   TENGO EL ERROR QUE LA PAGINA NO MUESTRA EL FILTRO SI LA RECARGO, O SI AGREGO UN PRODUCTO AL CARRITO, EL FILTRO SE VA.
+let filtro = localStorage.getItem('filtro') || 'todos';
+filtrarProductos(filtro);
+
+
 todosButton.addEventListener('click', () => {
+    localStorage.setItem('filtro', 'todos');
     filtrarProductos('todos');
 });
 
 xboxButton.addEventListener('click', () => {
+    localStorage.setItem('filtro', 'xbox');
     filtrarProductos('xbox');
 });
 
 playButton.addEventListener('click', () => {
+    localStorage.setItem('filtro', 'playstation');
     filtrarProductos('playstation');
 });
+
+
 
 function filtrarProductos(filtro) {
     const cards = document.querySelectorAll('.card');
@@ -139,6 +150,5 @@ contenedor.addEventListener('click', (e) => {
 function guardarCarrito() {
     localStorage.setItem('carrito', JSON.stringify(carrito));
 }
-
 
 obtenerProductos();
