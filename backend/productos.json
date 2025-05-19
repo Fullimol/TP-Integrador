@@ -1,0 +1,58 @@
+[
+  {
+    "id": 1,
+    "nombre": "God of War Ragnarök",
+    "plataforma": "Playstation",
+    "precio": 69.99,
+    "imagen": "https://juegosdigitalesargentina.com/files/images/productos/1655484530-god-of-war-ragnarok-ps5-pre-orden-0.jpg"
+  },
+  {
+    "id": 2,
+    "nombre": "Spider-Man",
+    "plataforma": "Playstation",
+    "precio": 49.99,
+    "imagen": "https://juegosdigitalesargentina.com/files/images/productos/1700783848-marvel-spider-man-miles-morales-ps5-0.jpg"
+  },
+  {
+    "id": 3,
+    "nombre": "Horizon Forbidden West",
+    "plataforma": "Playstation",
+    "precio": 59.99,
+    "imagen": "https://juegosdigitalesargentina.com/files/images/productos/1631120527-horizon-forbidden-west-ps5-pre-orden.jpg"
+  },
+  {
+    "id": 4,
+    "nombre": "Halo Infinite",
+    "plataforma": "Xbox",
+    "precio": 59.99,
+    "imagen": "https://juegosdigitalesargentina.com/files/images/productos/1644613688-halo-infinite-xbox-series-xs.jpg"
+  },
+  {
+    "id": 5,
+    "nombre": "Forza Horizon 5",
+    "plataforma": "Xbox",
+    "precio": 49.99,
+    "imagen": "https://juegosdigitalesargentina.com/files/images/productos/1658270695-forza-horizon-5-xbox-series-xs-0.jpg"
+  },
+  {
+    "id": 6,
+    "nombre": "Gears 5",
+    "plataforma": "Xbox",
+    "precio": 39.99,
+    "imagen": "https://juegosdigitalesargentina.com/files/images/productos/1723144620-gears-5-game-of-the-year-edition-xbox-series-xs-0.webp"
+  },
+  {
+    "id": 7,
+    "nombre": "The Last of Us Part II",
+    "plataforma": "Playstation",
+    "precio": 39.99,
+    "imagen": "https://juegosdigitalesargentina.com/files/images/productos/1623456225-the-last-of-us-part-ii-ps5.jpg"
+  },
+  {
+    "id": 8,
+    "nombre": "Forza MotorSport",
+    "plataforma": "Xbox",
+    "precio": 29.99,
+    "imagen": "https://juegosdigitalesargentina.com/files/images/productos/1673911737-forza-motorsport-xbox-series-xs-pre-orden-0.jpg"
+  }
+]
