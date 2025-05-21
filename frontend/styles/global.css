@@ -64,13 +64,6 @@ nav ul li a:hover {
     background-color: violet;
 }
 
-.active {
-    background-color: purple;
-    /* Color de fondo activo */
-    color: #fff;
-    /* Color de texto activo */
-}
-
 /* ===== Navbar FIN ===== */
 
 /* ===== header logo ===== */
@@ -110,7 +103,7 @@ header img {
 }
 
 #btn-darkMode {
-    margin-right: 2rem;
+    margin-right: 4rem;
     background-color: transparent;
     border: none;
     font-size: 2rem;

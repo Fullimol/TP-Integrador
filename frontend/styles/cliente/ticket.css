@@ -8,6 +8,7 @@
     background-color: #f9f9f9;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #444;
 }
 
 #ticket-container h1 {

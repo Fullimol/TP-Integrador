@@ -1,5 +1,6 @@
 /* Logica de la pagina del carrito */
 const contenedor = document.getElementById('carrito-container');
+const btnconfirmar = document.querySelector('.footer-btn');
 
 // obtener carrito del localStorage
 const carrito = JSON.parse(localStorage.getItem('carrito')) || [];
@@ -70,6 +71,7 @@ function quitarDelCarrito(id) {
     }
 
     mostrarTotal();
+    mostrarConfirmarCompra()
     guardarCarrito();
     mostrarEnCarrito(productos);
     console.log(carrito);
@@ -107,6 +109,17 @@ function mostrarTotal() {
 }
 
 
-// boton confirmar compra:
+// si el carrito esta vacio, NO permito confirmar compra: deshabilito el link de confirmar compra
 
+function mostrarConfirmarCompra() {
+    if (carrito.length === 0) {
+        btnconfirmar.classList.add('hidden');
+    } else {
+        btnconfirmar.classList.remove('hidden');
+    }
+}
+
+
+
+mostrarConfirmarCompra();
 mostrarEnCarrito();
