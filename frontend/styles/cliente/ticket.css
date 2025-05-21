@@ -1,1 +1,50 @@
 /* Estilos para la pagina que muestra el ticket */
+#ticket-container {
+    max-width: 400px;
+    margin: 2rem auto;
+    padding: 1.5rem;
+    border: 1px solid #ccc;
+    border-radius: 12px;
+    background-color: #f9f9f9;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+#ticket-container h1 {
+    text-align: center;
+    font-size: 1.8rem;
+    margin-bottom: 1rem;
+    color: #333;
+}
+
+#ticket-container p {
+    margin: 0.5rem 0;
+    font-size: 1rem;
+    color: #444;
+}
+
+#ticket-container ul {
+    padding-left: 1.2rem;
+    margin: 0.5rem 0;
+}
+
+#ticket-container li {
+    margin: 0.3rem 0;
+    font-size: 0.95rem;
+}
+
+@media (max-width: 480px) {
+    #ticket-container {
+        margin: 1rem;
+        padding: 1rem;
+    }
+
+    #ticket-container h1 {
+        font-size: 1.5rem;
+    }
+
+    #ticket-container p,
+    #ticket-container li {
+        font-size: 0.95rem;
+    }
+}

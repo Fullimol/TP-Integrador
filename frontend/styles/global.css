@@ -16,7 +16,7 @@ body {
 
 main {
     flex: 1;
-    /* Ocupa el espacio restante entre header y footer */
+    padding-bottom: 80px; /* Ajustá según el alto real del footer */
 }
 
 
@@ -131,11 +131,16 @@ header img {
 
 /* footer */
 footer {
-    padding: 1rem;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
     background-color: grey;
     text-align: center;
     padding: 1rem;
+    z-index: 1000;
 }
+
 
 
 .footer-btn {

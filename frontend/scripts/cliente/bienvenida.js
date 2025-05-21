@@ -5,6 +5,10 @@
 const formBienvenida = document.getElementById('form-bienvenida');
 const nombreBienvenida = document.getElementById('nombre-bienvenida');
 
+
+// limpio todo el localStorage cada vez que cargo la pag bienvenida:
+localStorage.clear();
+
 formBienvenida.addEventListener('submit', (e) => {
     e.preventDefault();
     localStorage.setItem('nombre', nombreBienvenida.value);

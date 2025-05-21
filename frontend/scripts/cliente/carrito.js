@@ -12,6 +12,7 @@ function mostrarEnCarrito() {
     contenedor.innerHTML = ''; // limpiar antes de mostrar
 
     carrito.forEach(producto => {
+        mostrarTotal();
         const card = document.createElement('div');
         const enCarrito = carrito.some(p => p.id === producto.id);
         card.className = 'card';
@@ -68,6 +69,7 @@ function quitarDelCarrito(id) {
         }
     }
 
+    mostrarTotal();
     guardarCarrito();
     mostrarEnCarrito(productos);
     console.log(carrito);
@@ -89,5 +91,22 @@ contenedor.addEventListener('click', (e) => {
 function guardarCarrito() {
     localStorage.setItem('carrito', JSON.stringify(carrito));
 }
+
+
+// Calculo el total del carrito y guardar en localStorage
+function calcularTotal() {
+    const total = carrito.reduce((acc, p) => acc + p.precio * p.cantidad, 0);
+    localStorage.setItem('total', total.toFixed(2));
+    return total;
+}
+
+
+function mostrarTotal() {
+    const totalElement = document.getElementById('total-container');
+    totalElement.textContent = `Total: $${calcularTotal()}`;
+}
+
+
+// boton confirmar compra:
 
 mostrarEnCarrito();
