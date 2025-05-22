@@ -98,9 +98,11 @@ function guardarCarrito() {
 // Calculo el total del carrito y guardar en localStorage
 function calcularTotal() {
     const total = carrito.reduce((acc, p) => acc + p.precio * p.cantidad, 0);
-    localStorage.setItem('total', total.toFixed(2));
-    return total;
+    const totalFormateado = parseFloat(total.toFixed(2));
+    localStorage.setItem('total', totalFormateado);
+    return totalFormateado;
 }
+
 
 
 function mostrarTotal() {

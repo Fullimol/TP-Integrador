@@ -145,7 +145,7 @@ function agregarAlCarrito(id) {
     }
 
     guardarCarrito();
-    mostrarProductos(productos);
+    mostrarProductosPaginados();
     console.log(carrito);
 }
 
@@ -161,7 +161,7 @@ function quitarDelCarrito(id) {
     }
 
     guardarCarrito();
-    mostrarProductos(productos);
+    mostrarProductosPaginados();
     console.log(carrito);
 }
 
