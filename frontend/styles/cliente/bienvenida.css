@@ -32,21 +32,6 @@
     outline: none;
 }
 
-#form-bienvenida button {
-    padding: 10px;
-    font-size: 1rem;
-    background-color: purple;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s;
-}
-
-#form-bienvenida button:hover {
-    background-color: violet;
-}
-
 /* Responsive: pantallas pequeñas */
 @media (max-width: 500px) {
     #form-bienvenida {

@@ -1,6 +1,10 @@
 /* Logica de la pagina del carrito */
 const contenedor = document.getElementById('carrito-container');
-const btnconfirmar = document.querySelector('.footer-btn');
+const btnConfirmar = document.getElementById("confirmarCompraButton")
+const btnGenerarTicket = document.getElementById("generarTicketButton");
+const modal = document.getElementById("modalConfirmarCompra");
+const confirmarCompraButton = document.getElementById("confirmarCompraButton");
+const cancelarCompraButton = document.getElementById("cancelarCompraButton");
 
 // obtener carrito del localStorage
 const carrito = JSON.parse(localStorage.getItem('carrito')) || [];
@@ -28,7 +32,7 @@ function mostrarEnCarrito() {
                 ${enCarrito ? `<p>Cantidad en carrito: ${carrito.find(p => p.id === producto.id).cantidad}</p>` : ''}
                 </div>
                 <div class="card-buttons">
-                <button class="agregar-button" data-id="${producto.id}">
+                <button class="agregar-button button" data-id="${producto.id}">
                     ${enCarrito ? 'Agregar otro más' : 'Agregar al carrito'}
                 </button>
                 <button class="quitar-button ${enCarrito ? '' : 'hidden'}" data-id="${producto.id}">
@@ -115,12 +119,23 @@ function mostrarTotal() {
 
 function mostrarConfirmarCompra() {
     if (carrito.length === 0) {
-        btnconfirmar.classList.add('hidden');
+        btnConfirmar.classList.add('hidden');
     } else {
-        btnconfirmar.classList.remove('hidden');
+        btnConfirmar.classList.remove('hidden');
     }
 }
 
+confirmarCompraButton.addEventListener("click", () => {
+    modal.classList.add("mostrar");
+});
+
+cancelarCompraButton.addEventListener("click", () => {
+    modal.classList.remove("mostrar");
+});
+
+generarTicketButton.addEventListener("click", () => {
+    window.location.href = "ticket.html";
+});
 
 
 mostrarConfirmarCompra();

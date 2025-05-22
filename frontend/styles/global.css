@@ -120,7 +120,22 @@ header img {
     transform: scale(1.1);
 }
 
+.button{
+        display: inline-block;
+    padding: 10px 20px;
+    background-color: purple;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    text-decoration: none;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
 
+.button:hover {
+    background-color: violet;
+}
 
 /* footer */
 footer {
@@ -134,9 +149,7 @@ footer {
     z-index: 1000;
 }
 
-
-
-.footer-btn {
+/* .footer-btn {
     display: inline-block;
     padding: 10px 20px;
     background-color: purple;
@@ -151,12 +164,12 @@ footer {
 
 .footer-btn:hover {
     background-color: violet;
-}
+} */
 
 
 /* cambios de estilos */
 .hidden {
-    display: none;
+    display: none!important;
 }
 
 .dark-mode {
