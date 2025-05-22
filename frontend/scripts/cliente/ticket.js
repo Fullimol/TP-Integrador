@@ -16,7 +16,7 @@ function mostrarTicket() {
     });
 
     contenedor.innerHTML = `
-        <h1>Ticket</h1>
+        <h1>Ticket "Game Store"</h1>
         <p>Fecha: ${fecha}</p>
         <p>Nombre cliente: ${nombre}</p>
         <p>Productos:</p>
