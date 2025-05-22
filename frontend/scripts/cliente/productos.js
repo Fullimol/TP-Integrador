@@ -97,7 +97,7 @@ function mostrarProductos(productos) {
 
 // filtrar los productos
 
-//                  (!)   TENGO EL ERROR QUE LA PAGINA NO MUESTRA EL FILTRO SI LA RECARGO, O SI AGREGO UN PRODUCTO AL CARRITO, EL FILTRO SE VA.
+//                  (!)   TENGO EL ERROR QUE LA PAGINA NO MUESTRA EL FILTRO SI LA RECARGO, O SI AGREGO UN PRODUCTO AL CARRITO, EL FILTRO SE VA. Tampoco trae los datos de la otras paginas.
 let filtro = localStorage.getItem('filtro') || 'todos';
 filtrarProductos(filtro);
 
