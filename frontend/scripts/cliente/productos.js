@@ -15,14 +15,14 @@ let paginaActual = 1;
 const productosPorPagina = 8;
 
 console.log(localStorage.getItem('nombre')); // obtener nombre del localStorage
-// localStorage.removeItem('carrito'); //vaciar local storage carrito:
-
 
 function obtenerProductos() {
     fetch(url)
         .then(response => response.json())
         .then(data => {
-            productos = data;
+            // Filtrar productos disponibles
+            productos = data.filter(p => p.disponible !== false);
+
             carrito = JSON.parse(localStorage.getItem('carrito')) || [];
             mostrarProductosPaginados();
             console.log("PRODUCTOS", productos);
