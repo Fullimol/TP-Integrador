@@ -32,6 +32,12 @@
     outline: none;
 }
 
+.deshabilitarButton{
+    pointer-events: none;
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
 /* Responsive: pantallas pequeñas */
 @media (max-width: 500px) {
     #form-bienvenida {

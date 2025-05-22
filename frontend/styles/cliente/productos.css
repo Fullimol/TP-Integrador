@@ -124,8 +124,9 @@ main{
     background-color: violet;
 }
 
-
-
+#pagina-actual{
+    color: black!important;
+}
 
 /* Responsive */
 @media (max-width: 500px) {
