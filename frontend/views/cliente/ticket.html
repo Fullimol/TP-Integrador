@@ -33,7 +33,7 @@
     <!-- Contenedor principal -->
     <main>
         <!-- Aquí irá el contenido dinámico -->
-        
+
         <div id="ticket-container">
 
         </div>
@@ -41,8 +41,10 @@
 
     <!-- Pie de página -->
     <footer>
-        <p>GRACIAS POR SU COMPRA</p>
+        <button type="button" id="imprimirTicketButton" class="button">Imprimir ticket (PDF)</button>
     </footer>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script> <!-- esto es para generar PDF -->
 </body>
 
 <script src="../../scripts/utils.js" defer></script>

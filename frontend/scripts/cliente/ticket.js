@@ -4,8 +4,8 @@
 const carrito = JSON.parse(localStorage.getItem('carrito')) || [];
 const total = localStorage.getItem('total');
 const nombre = localStorage.getItem('nombre');
-
 const contenedor = document.getElementById('ticket-container');
+const btnImprimirTicket = document.getElementById('imprimirTicketButton');
 
 
 function mostrarTicket() {
@@ -27,5 +27,10 @@ function mostrarTicket() {
     `;
 }
 
-
 mostrarTicket();
+
+// Generar PDF:
+btnImprimirTicket.addEventListener('click', () => {
+    html2pdf().from(contenedor).save();
+    console.log("Ticket impreso");
+});
