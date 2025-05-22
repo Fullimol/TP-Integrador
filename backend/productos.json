@@ -54,5 +54,54 @@
     "plataforma": "Xbox",
     "precio": 29.99,
     "imagen": "https://juegosdigitalesargentina.com/files/images/productos/1673911737-forza-motorsport-xbox-series-xs-pre-orden-0.jpg"
+  },
+  {
+    "id": 9,
+    "nombre": "Bioshock",
+    "plataforma": "Playstation",
+    "precio": 59.99,
+    "imagen": "https://juegosdigitalesargentina.com/files/images/productos/1649288377-bioshock-the-collection-xbox-series-xs-0.jpg"
+  },
+  {
+    "id": 10,
+    "nombre": "Star Wars",
+    "plataforma": "Xbox",
+    "precio": 59.99,
+    "imagen": "https://juegosdigitalesargentina.com/files/images/productos/1651789450-star-wars-jedi-fallen-order-xbox-series-xs-0.jpg"
+  },
+  {
+    "id": 11,
+    "nombre": "The Witcher 3",
+    "plataforma": "Xbox",
+    "precio": 29.99,
+    "imagen": "https://juegosdigitalesargentina.com/files/images/productos/1651787088-the-witcher-3-wild-hunt-complete-edition-xbox-series-xs-0.jpg"
+  },
+  {
+    "id": 12,
+    "nombre": "DOOM",
+    "plataforma": "Xbox",
+    "precio": 59.99,
+    "imagen": "https://juegosdigitalesargentina.com/files/images/productos/1737753783-doom-the-dark-ages-xbox-series-xs-pre-orden-0.webp"
+  },
+  {
+    "id": 13,
+    "nombre": "Street Fighter 6",
+    "plataforma": "Playstation",
+    "precio": 59.99,
+    "imagen": "https://juegosdigitalesargentina.com/files/images/productos/1685745024-street-fighter-vi-ps5-0.jpg"
+  },
+  {
+    "id": 14,
+    "nombre": "GTA VI",
+    "plataforma": "Playstation",
+    "precio": 159.99,
+    "imagen": "https://juegosdigitalesargentina.com/files/images/productos/1746638760-grand-theft-auto-vi-ps5-pre-orden-0.webp"
+  },
+  {
+    "id": 15,
+    "nombre": "Crash Racing",
+    "plataforma": "Playstation",
+    "precio": 19.99,
+    "imagen": "https://juegosdigitalesargentina.com/files/images/productos/1624656741-crash-team-racing-nitro-fueled-ps5.jpg"
   }
 ]

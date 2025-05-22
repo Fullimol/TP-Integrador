@@ -3,11 +3,16 @@ const contenedor = document.getElementById('productos-container');
 const todosButton = document.querySelector('button[name="todos-button"]');
 const xboxButton = document.querySelector('button[name="xbox-button"]');
 const playButton = document.querySelector('button[name="play-button"]');
+const siguienteButton = document.getElementById('siguiente-button');
+const anteriorButton = document.getElementById('anterior-button');
+const textoPaginaActual = document.getElementById('pagina-actual');
 
 const url = "../../../backend/productos.json";
 
 let carrito = [];
 let productos = [];
+let paginaActual = 1;
+const productosPorPagina = 8;
 
 console.log(localStorage.getItem('nombre')); // obtener nombre del localStorage
 // localStorage.removeItem('carrito'); //vaciar local storage carrito:
@@ -19,13 +24,39 @@ function obtenerProductos() {
         .then(data => {
             productos = data;
             carrito = JSON.parse(localStorage.getItem('carrito')) || [];
-            mostrarProductos(productos);
+            mostrarProductosPaginados();
             console.log("PRODUCTOS", productos);
             console.log("CARRITO", carrito);
         })
         .catch(error => console.error('Error al cargar productos:', error));
-
 }
+
+
+function mostrarProductosPaginados() {
+    const inicio = (paginaActual - 1) * productosPorPagina;
+    const fin = inicio + productosPorPagina;
+    const productosPagina = productos.slice(inicio, fin);
+    textoPaginaActual.innerHTML = `Pagina ${paginaActual} de ${Math.ceil(productos.length / productosPorPagina)}`;
+    mostrarProductos(productosPagina);
+}
+
+
+function paginaSiguiente() {
+    paginaActual += 1;
+    obtenerProductos();
+}
+
+function paginaAnterior() {
+    if (paginaActual > 1) {
+        paginaActual -= 1;
+        obtenerProductos();
+    }
+}
+
+siguienteButton.addEventListener("click", paginaSiguiente);
+anteriorButton.addEventListener("click", paginaAnterior);
+
+
 
 function mostrarProductos(productos) {
     contenedor.innerHTML = ''; // limpiar antes de mostrar
