@@ -3,6 +3,7 @@ const todosButton = document.getElementById('todos-button');
 const xboxButton = document.getElementById('xbox-button');
 const playstationButton = document.getElementById('play-button');
 const altaProductoButton = document.getElementById('altaproducto-button');
+const volverLoginButton = document.getElementById("volverlogin-button")
 
 let productos = [];
 const url = "../../../backend/productos.json";
@@ -106,7 +107,12 @@ playstationButton.addEventListener('click', () => {
 });
 
 altaProductoButton.addEventListener('click', ()=> {
-    alert("Dar de alta un producto nuevo")
+    window.location.href = "alta-producto.html";
+    /* Acción al dar de alta nuevo producto */
+})
+
+volverLoginButton.addEventListener('click', ()=> {
+    window.location.href = "login.html";
     /* Acción al dar de alta nuevo producto */
 })
 /* -------------------- ACCIONES DE FILTROS Y ALTA -------------------- */
