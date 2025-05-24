@@ -12,6 +12,8 @@ async function conectar() {
     return db
 }
 
+
+//              **************      TABLA JUEGOS       **************
 async function selectJuegos() {
     // 1. Crear una nueva conexión a la base de datos.
     const db = await conectar();
@@ -52,11 +54,24 @@ async function agregar(nombre, plataforma, precio, imagen, disponible){
     await db.end();
     console.log(resultado);
 }
+//              **************     FIN TABLA JUEGOS       **************
 
+//              **************      TABLA USUARIOS       **************
+// obtener los usuraios de BD:
+async function selectUsuarios() {
+    const db = await conectar();
+    const qry = 'SELECT * FROM usuarios';
+    const [rows] = await db.execute(qry);
+    await db.end();
+    return rows;
+} 
+
+//              **************      FIN TABLA USUARIOS       **************
 
 module.exports = {
     selectJuegos,
     deleteJuego,
     actualizar,
-    agregar
+    agregar,
+    selectUsuarios
 };

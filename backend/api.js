@@ -15,5 +15,9 @@ app.use(express.static('public'));
 const juegosRutas = require('./routes/juegosRutas');
 app.use('/juegos', juegosRutas); // incluye rutas de vistas y lógica relacionada
 
+const usuariosRutas = require('./routes/usuariosRutas');
+app.use('/usuarios', usuariosRutas);
+
+
 // Escuchar
 app.listen(3000, () => console.log('Servidor escuchando en http://localhost:3000'));
