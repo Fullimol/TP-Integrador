@@ -1,10 +1,33 @@
 <!DOCTYPE html>
-<html lang="es">
+<html>
 <head>
-  <meta charset="UTF-8">
-  <title>Alta producto</title>
+    <title>Nuevo Producto</title>
 </head>
 <body>
-  <h1>Alta producto</h1>
+    <h1>Crear nuevo producto</h1>
+    <form action="/crear" method="POST">
+        <label>Nombre:</label>
+        <input type="text" name="nombre" required><br>
+
+        <label>Plataforma:</label>
+        <select name="plataforma">
+            <option value="Playstation">Playstation</option>
+            <option value="Xbox">Xbox</option>
+        </select><br>
+
+        <label>Precio:</label>
+        <input type="number" step="0.01" name="precio" required><br>
+
+        <label>URL de Imagen:</label>
+        <input type="text" name="imagen" required><br>
+
+        <label>Disponible:</label>
+        <select name="disponible">
+            <option value="true">true</option>
+            <option value="false">false</option>
+        </select><br>
+
+        <button type="submit">Agregar</button>
+    </form>
 </body>
 </html>
