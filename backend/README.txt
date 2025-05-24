@@ -1,4 +1,4 @@
-Paquetes usados:
+PAQUETES USADOS: (hacer un "npm install" para instalarlos todos)
 
 npm install express
 npm install cors
@@ -9,7 +9,12 @@ npm install ejs
 Usar en consola sobre la carpeta backend "nodemon api.js" para levantar servidor.
 
 
-******* DATOS A INSERTAR EN EL SQL *******
+
+******* COMANDO PARA PROBAR EL SQL *******
+
+DELETE FROM juegos;
+ALTER TABLE juegos AUTO_INCREMENT = 1;
+
 
 INSERT INTO juegos (id, nombre, plataforma, precio, imagen, disponible) VALUES
 (1, 'God of War Ragnarök', 'Playstation', 69.99, 'https://juegosdigitalesargentina.com/files/images/productos/1655484530-god-of-war-ragnarok-ps5-pre-orden-0.jpg', true),
