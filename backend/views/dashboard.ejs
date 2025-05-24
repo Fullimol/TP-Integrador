@@ -1,10 +1,36 @@
 <!DOCTYPE html>
-<html lang="es">
+<html>
 <head>
-  <meta charset="UTF-8">
-  <title>Dashboard</title>
+    <title>Admin Productos</title>
+    <link rel="stylesheet" href="../../styles/global.css">
+    <link rel="stylesheet" href="../../styles/administrador/dashboard.css">
 </head>
 <body>
-  <h1>Dashboard de Juegos</h1>
+    <h1>Listado de Productos</h1>
+    <a href="/crear">Agregar nuevo producto</a>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Imagen</th><th>Nombre</th><th>Plataforma</th><th>Precio</th><th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% productos.forEach(producto => { %>
+                <tr>
+                    <td><img src="<%= producto.imagen %>" width="60"></td>
+                    <td><%= producto.nombre %></td>
+                    <td><%= producto.plataforma %></td>
+                    <td>$<%= producto.precio.toFixed(2) %></td>
+                    <td>
+                        <form action="/eliminar/<%= producto.id %>" method="POST">
+                            <button></button>
+                            <button type="submit">Eliminar</button>
+                        </form>
+                    </td>
+                </tr>
+            <% }) %>
+        </tbody>
+    </table>
 </body>
 </html>
