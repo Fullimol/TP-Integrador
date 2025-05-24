@@ -35,9 +35,28 @@ async function deleteJuego(id) {
     console.log(resultado);
 }
 
+//actualizar un juego segun su id:
+async function actualizar(id, nombre, plataforma, precio, imagen, disponible){
+    const db = await conectar();
+    const qry = 'UPDATE juegos SET nombre=?, plataforma=?, precio=?, imagen=?, disponible=? WHERE id=?';
+    const resultado = await db.execute(qry,[nombre, plataforma, precio, imagen, disponible, id]);
+    await db.end();
+    console.log(resultado);
+}
+
+//agregar un juego nuevo a un id nuevo:
+async function agregar(nombre, plataforma, precio, imagen, disponible){
+    const db = await conectar();
+    const qry = 'INSERT INTO juegos (nombre, plataforma, precio, imagen, disponible) VALUES (?, ?, ?, ?, ?)';
+    const resultado = await db.execute(qry,[, nombre, plataforma, precio, imagen, disponible]);
+    await db.end();
+    console.log(resultado);
+}
 
 
 module.exports = {
     selectJuegos,
-    deleteJuego
+    deleteJuego,
+    actualizar,
+    agregar
 };

@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const { getJuegos, eliminarJuego } = require('../controllers/juegosControllers');
+const { getJuegos, eliminarJuego, actualizarJuego, agregarJuego } = require('../controllers/juegosControllers');
 
 
 //            LOGICA:
@@ -8,8 +8,13 @@ const { getJuegos, eliminarJuego } = require('../controllers/juegosControllers')
 router.get('/get', getJuegos);
 
 // Eliminar un juego por id
-router.delete('/:id', eliminarJuego);
+router.delete('/delete/:id', eliminarJuego);
 
+//actualizar un juego por id
+router.put('/update/:id', actualizarJuego);
+
+//agregar un juego nuevo
+router.post('/add', agregarJuego);
 
 
 
