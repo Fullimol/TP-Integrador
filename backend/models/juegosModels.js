@@ -37,7 +37,7 @@ async function actualizar(id, nombre, plataforma, precio, imagen, disponible){
 async function agregar(nombre, plataforma, precio, imagen, disponible){
     const db = await conectar();
     const qry = 'INSERT INTO juegos (nombre, plataforma, precio, imagen, disponible) VALUES (?, ?, ?, ?, ?)';
-    const resultado = await db.execute(qry,[, nombre, plataforma, precio, imagen, disponible]);
+    const resultado = await db.execute(qry,[nombre, plataforma, precio, imagen, disponible]);
     await db.end();
     console.log(resultado);
 }

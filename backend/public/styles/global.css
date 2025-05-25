@@ -1,0 +1,206 @@
+/* Para definir estilos generales que se aplican a toda la aplicación. Ejemplo, el navbar o el header. */
+
+
+html,
+body {
+    height: 100%;
+    margin: 0;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+main {
+    flex: 1;
+    padding-bottom: 80px; /* Ajustá según el alto real del footer */
+}
+
+
+/* ===== Navbar ===== */
+nav {
+    background-color: grey;
+    /* Color de fondo oscuro */
+    padding: 15px 0;
+    /* Espaciado superior e inferior */
+    text-align: center;
+    /* Centra el contenido */
+}
+
+nav ul {
+    list-style: none;
+    /* Quita los estilos de lista */
+    padding: 0;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    /* Centra los elementos */
+    gap: 20px;
+    /* Espacio entre elementos */
+}
+
+nav ul li {
+    display: inline-block;
+}
+
+nav ul li a {
+    display: inline-block;
+    text-decoration: none;
+    color: white;
+    background-color: purple;
+    font-size: 18px;
+    padding: 10px 20px;
+    border-radius: 5px;
+    border: none;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    font-weight: 500;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+nav ul li a:hover {
+    background-color: violet;
+}
+
+/* ===== Navbar FIN ===== */
+
+/* ===== header logo ===== */
+header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem 2rem;
+    background-color: grey;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    flex-wrap: wrap;
+}
+
+.header-left {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    flex-wrap: wrap;
+}
+
+header img {
+    width: 120px;
+    height: auto;
+    border-radius: 50%;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.alumnos-container {
+    display: flex;
+    font-weight: 500;
+    justify-content: center;
+    background-color: grey;
+}
+
+.alumnos-container p {
+    margin-left: 2rem;
+}
+
+#btn-darkMode {
+    margin-right: 4rem;
+    background-color: transparent;
+    border: none;
+    font-size: 2rem;
+    cursor: pointer;
+    color: white;
+    /* o negro si el fondo es claro */
+    padding: 0.5rem;
+    transition: transform 0.2s ease;
+    background-color: whitesmoke;
+    border-radius: 50%;
+}
+
+#btn-darkMode:hover {
+    transform: scale(1.1);
+}
+
+.button{
+        display: inline-block;
+    padding: 10px 20px;
+    background-color: purple;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    text-decoration: none;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.button:hover {
+    background-color: violet;
+}
+
+/* footer */
+footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background-color: grey;
+    text-align: center;
+    padding: 1rem;
+    z-index: 1000;
+}
+
+/* .footer-btn {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: purple;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    text-decoration: none;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.footer-btn:hover {
+    background-color: violet;
+} */
+
+
+/* cambios de estilos */
+.hidden {
+    display: none!important;
+}
+
+.dark-mode {
+    background-color: #333 !important;
+    color: #fff !important;
+}
+
+
+
+/* Responsive */
+@media (max-width: 600px) {
+    header {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    .alumnos-container {
+        flex-direction: column;
+        gap: 0.5rem;
+        margin-top: 1rem;
+    }
+
+    header img {
+        width: 100px;
+    }
+
+    .footer-btn {
+        width: 50%;
+        font-size: 1.1rem;
+    }
+}
+
+/* ===== header logo FIN ===== */
