@@ -6,11 +6,19 @@ const { selectJuegos, deleteJuego, actualizar, agregar } = require('../db');
 async function getJuegos(req, res) {
     try {
         const juegos = await selectJuegos();
-        res.json(juegos);
+
+        // Convertir el campo precio a número (por si viene como string) porque en la bd es decimal y lo pasa solo a string.
+        const juegosConvertidos = juegos.map(j => ({
+            ...j,
+            precio: Number(j.precio)
+        }));
+
+        res.json(juegosConvertidos);
     } catch (err) {
         res.status(500).json({ error: 'Error al obtener los juegos' });
     }
 }
+
 
 // elimino juego segun si id pasado por la url
 async function eliminarJuego(req, res) {
@@ -37,9 +45,9 @@ async function actualizarJuego(req, res) {
 }
 
 //agregar un juego nuevo a BD:
-async function agregarJuego(req, res){
+async function agregarJuego(req, res) {
     try {
-        const {nombre, plataforma, precio, imagen, disponible } = req.body;
+        const { nombre, plataforma, precio, imagen, disponible } = req.body;
         await agregar(nombre, plataforma, precio, imagen, disponible);
         res.json({ message: 'Juego agregado correctamente' });
     } catch (err) {

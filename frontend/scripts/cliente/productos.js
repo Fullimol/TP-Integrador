@@ -7,7 +7,7 @@ const siguienteButton = document.getElementById('siguiente-button');
 const anteriorButton = document.getElementById('anterior-button');
 const textoPaginaActual = document.getElementById('pagina-actual');
 
-const url = "../../../backend/productos.json";
+const url = "http://localhost:3000/juegos/get";
 
 let carrito = [];
 let productos = [];
