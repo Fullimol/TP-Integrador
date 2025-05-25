@@ -1,6 +1,6 @@
 // aca va las funciones get, post, delete y put
 
-const { selectJuegos, deleteJuego, actualizar, agregar } = require('../db');
+const { selectJuegos, deleteJuego, actualizar, agregar } = require('../models/juegosModels');
 
 //obtener todos los juegos de la base de datos:
 async function getJuegos(req, res) {
