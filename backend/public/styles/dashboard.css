@@ -1,0 +1,177 @@
+
+#productos-container {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    padding: 20px;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.card {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    background-color: white;
+    padding: 10px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.card:hover {
+    transform: scale(1.03);
+}
+
+.card img {
+    width: 80px;
+    height: auto;
+    border-radius: 5px;
+}
+
+.card-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    flex: 1;
+}
+
+.editar-button {
+    align-self: start;
+    margin-top: 10px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 6px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.editar-button:hover {
+    background-color: #0056b3;
+}
+
+
+
+
+
+/* EDICIÓN DE LA TABLA */
+.tabla-productos {
+    width: 100%;
+    max-width: 1000px;
+    margin: 20px auto;
+    border-collapse: collapse;
+    font-family: Arial, sans-serif;
+}
+
+.tabla-productos thead {
+    background-color: #f4f4f4;
+}
+
+.tabla-productos th, .tabla-productos td {
+    padding: 10px 15px;
+    text-align: left;
+    border-bottom: 1px solid #ccc;
+}
+
+.tabla-img {
+    width: 50px;
+    height: auto;
+    border-radius: 5px;
+}
+
+
+/* Clase base para botones de acción */
+.boton-accion {
+    width: 100%; /* Asegura que ambos botones usen el mismo ancho */
+    padding: 5px 10px;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    font-size: 14px;
+    cursor: pointer;
+    box-sizing: border-box;
+}
+
+/* Estilo para botón EDITAR */
+.editar-button {
+    background-color: #007bff;
+}
+.editar-button:hover {
+    background-color: #0056b3;
+}
+
+
+/* Estilo para botón ELIMINAR */
+.eliminar-button {
+    background-color: #dc3545;
+}
+.eliminar-button:hover {
+    background-color: #c82333;
+}
+
+/* Contenedor vertical para botones */
+.acciones-botones {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.contenedor-altaproducto {
+    text-align: center;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.container-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem 2rem;
+    background-color: #f0f0f0;
+    border-radius: 8px;
+    margin: 1rem auto;
+    max-width: 600px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    justify-content: center;
+
+}
+
+.container-buttons p {
+    margin: 0;
+    font-weight: bold;
+    font-size: 1.1rem;
+    color: #333;
+}
+
+
+#pagina-actual{
+    color: black!important;
+}
+
+/* Responsive */
+@media (max-width: 500px) {
+    .container-buttons {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 0.75rem;
+        text-align: center;
+    }
+
+    .container-buttons button {
+        width: 100%;
+    }
+}

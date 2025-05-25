@@ -56,10 +56,23 @@ async function agregarJuego(req, res) {
     }
 }
 
+// ------------------- Función para pasar los juegos a EJS ------------------- 
+async function renderJuegos(req, res) {
+    try {
+        const juegos = await selectJuegos(); //Obtiene los juegos desde la BD
+        res.render('dashboard', { juegos }); // Se pasa los juegos a EJS
+    } catch (err) {
+        res.status(500).send('Error al renderizar la vista');
+    }
+}
+// ------------------- Función para pasar los juegos a EJS ------------------- 
+
+
 
 module.exports = {
     getJuegos,
     eliminarJuego,
     actualizarJuego,
-    agregarJuego
+    agregarJuego,
+    renderJuegos
 };
