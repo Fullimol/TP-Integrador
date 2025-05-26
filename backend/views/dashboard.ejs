@@ -26,27 +26,37 @@
 
         <div class="container-buttons">
             <p>Filtrar por:</p>
-            <button type="button" id="todos-button" class="button">Todos</button>
-            <button type="button" id="xbox-button" class="button">Xbox</button>
-            <button type="button" id="play-button" class="button">PlayStation</button>
+            <button type="button" id="todos-button" class="button btn-filtrar" data-plataforma="Todos">Todos</button>
+            <button type="button" id="xbox-button" class="button btn-filtrar" data-plataforma="Xbox">Xbox</button>
+            <button type="button" id="play-button" class="button btn-filtrar"
+                data-plataforma="PlayStation">PlayStation</button>
         </div>
 
         <div class="contenedor-altaproducto">
-            <button class="button alta-producto" id="altaproducto-button" type="button">Dar de alta NUEVO PRODUCTO</button>
+            <button class="button alta-producto" id="altaproducto-button" type="button">Dar de alta NUEVO
+                PRODUCTO</button>
         </div>
 
-        <!-- ✅ Aquí renderizamos dinámicamente productos -->
+
+
+
         <div id="productos-container">
             <% if (juegos && juegos.length> 0) { %>
                 <% juegos.forEach(juego=> { %>
-                    <div class="juego">
-                        <h3>
-                            <%= juego.nombre %>
-                        </h3>
-                        <p>Precio: $<%= juego.precio %></p>
-                        <p>Consola: <%= juego.plataforma %></p>
-                        <p>Disponible: <%= juego.disponible %></p>
-                        <!-- Agregá botones si querés eliminar o editar -->
+                    <div class="card">
+                        <img src="<%= juego.imagen %>" alt="<%= juego.nombre %>">
+                        <div class="card-content">
+                            <h4>
+                                <%= juego.nombre %>
+                            </h4>
+                            <p>Precio: $<%= juego.precio %></p>
+                            <p>Disponibilidad: <%= juego.disponible %></p>
+                            <p>Plataforma: <%= juego.plataforma %></p>
+                            <div class="acciones-botones">
+                                <button class="editar-button" data-id="<%= juego.id %>">Modificar</button>
+                                <button class="eliminar-button" data-id="<%= juego.id %>">Eliminar</button>
+                            </div>
+                        </div>
                     </div>
                     <% }) %>
                         <% } else { %>
@@ -54,10 +64,82 @@
                             <% } %>
         </div>
 
+
+
+
         <div class="contenedor-altaproducto">
             <h2 class="button alta-producto" id="volverlogin-button">Volver al login</h2>
         </div>
     </main>
 </body>
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const botones = document.querySelectorAll('.btn-filtrar');
+
+        botones.forEach(btn => {
+            btn.addEventListener('click', async () => {
+                const plataforma = btn.dataset.plataforma;
+
+                try {
+                    const response = await fetch(`/juegos/filtrar?plataforma=${plataforma}`);
+                    const juegos = await response.json();
+
+                    const contenedor = document.getElementById('productos-container');
+                    contenedor.innerHTML = '';
+
+                    juegos.forEach(juego => {
+                        const card = document.createElement('div');
+                        card.classList.add('card');
+
+                        card.innerHTML = `
+                        <img src="${juego.imagen}" alt="${juego.nombre}">
+                        <div class="card-content">
+                            <h4>${juego.nombre}</h4>
+                            <p>Precio: $${juego.precio}</p>
+                            <p>Disponibilidad: ${juego.disponible}</p>
+                            <p>Plataforma: ${juego.plataforma}</p>
+                            <div class="acciones-botones">
+                                <button class="editar-button" data-id="${juego.id}">Modificar</button>
+                                <button class="eliminar-button" data-id="${juego.id}">Eliminar</button>
+                            </div>
+                        </div>
+                    `;
+
+                        contenedor.appendChild(card);
+                    });
+
+                    activarBotones();
+                } catch (error) {
+                    console.error('Error al filtrar:', error);
+                }
+            });
+        });
+
+        function activarBotones() {
+            document.querySelectorAll('.eliminar-button').forEach(btn => {
+                btn.addEventListener('click', async () => {
+                    const id = btn.dataset.id;
+                    if (!confirm('¿Estás seguro de que querés eliminar este juego?')) return;
+
+                    const res = await fetch(`/juegos/delete/${id}`, { method: 'DELETE' });
+                    const data = await res.json();
+
+                    alert(data.message || data.error);
+                    if (res.ok) location.reload();
+                });
+            });
+
+            document.querySelectorAll('.editar-button').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    const id = btn.dataset.id;
+                    window.location.href = `/juegos/modificar-producto?id=${id}`;
+                });
+            });
+        }
+
+        activarBotones();
+    });
+</script>
 
 </html>
