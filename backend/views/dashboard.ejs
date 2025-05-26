@@ -28,13 +28,11 @@
             <p>Filtrar por:</p>
             <button type="button" id="todos-button" class="button btn-filtrar" data-plataforma="Todos">Todos</button>
             <button type="button" id="xbox-button" class="button btn-filtrar" data-plataforma="Xbox">Xbox</button>
-            <button type="button" id="play-button" class="button btn-filtrar"
-                data-plataforma="PlayStation">PlayStation</button>
+            <button type="button" id="play-button" class="button btn-filtrar"data-plataforma="PlayStation">PlayStation</button>
         </div>
 
         <div class="contenedor-altaproducto">
-            <button class="button alta-producto" id="altaproducto-button" type="button">Dar de alta NUEVO
-                PRODUCTO</button>
+            <button class="button alta-producto" id="altaproducto-button" type="button">AGREGAR PRODUCTO</button>
         </div>
 
 
@@ -54,7 +52,8 @@
                             <p>Plataforma: <%= juego.plataforma %></p>
                             <div class="acciones-botones">
                                 <button class="editar-button" data-id="<%= juego.id %>">Modificar</button>
-                                <button class="eliminar-button" data-id="<%= juego.id %>">Eliminar</button>
+                                <button class="desactivar-button" data-id="<%= juego.id %>">Desactivar</button>
+                                <button class="reactivar-button" data-id="<%= juego.id %>">Reactivar</button>
                             </div>
                         </div>
                     </div>
@@ -74,6 +73,11 @@
 </body>
 
 <script>
+    document.getElementById("altaproducto-button").addEventListener("click", ()=>{
+        window.location.href = '/juegos/alta-producto';
+    })
+
+
     document.addEventListener('DOMContentLoaded', () => {
         const botones = document.querySelectorAll('.btn-filtrar');
 
@@ -101,7 +105,8 @@
                             <p>Plataforma: ${juego.plataforma}</p>
                             <div class="acciones-botones">
                                 <button class="editar-button" data-id="${juego.id}">Modificar</button>
-                                <button class="eliminar-button" data-id="${juego.id}">Eliminar</button>
+                                <button class="desactivar-button" data-id="${juego.id}">Desactivar</button>
+                                <button class="reactivar-button" data-id="${juego.id}">Reactivar</button>
                             </div>
                         </div>
                     `;
@@ -117,23 +122,26 @@
         });
 
         function activarBotones() {
-            document.querySelectorAll('.eliminar-button').forEach(btn => {
+            document.querySelectorAll('.desactivar-button').forEach(btn => {
                 btn.addEventListener('click', async () => {
                     const id = btn.dataset.id;
-                    if (!confirm('¿Estás seguro de que querés eliminar este juego?')) return;
+                    if (!confirm('¿Estás seguro de que querés desactivar este juego?')) return;
 
-                    const res = await fetch(`/juegos/delete/${id}`, { method: 'DELETE' });
+                    /* const res = await fetch(`/juegos/delete/${id}`, { method: 'DELETE' });
                     const data = await res.json();
 
-                    alert(data.message || data.error);
+                    alert(data.message || data.error); */
                     if (res.ok) location.reload();
                 });
             });
 
+            /* Acción botón modificar para ir a modificar-producto */
             document.querySelectorAll('.editar-button').forEach(btn => {
                 btn.addEventListener('click', () => {
+                    /* 
+                    LOGICA PARA REDIRIGIR AL ARCHIVO DE MODIFICACIÓN DE PRODUCTO
                     const id = btn.dataset.id;
-                    window.location.href = `/juegos/modificar-producto?id=${id}`;
+                    window.location.href = `/juegos/modificar-producto?id=${id}`; */
                 });
             });
         }

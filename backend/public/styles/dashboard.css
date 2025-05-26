@@ -65,17 +65,15 @@
 }
 
 
-/* Clase base para botones de acción */
-.boton-accion {
-    width: 100%; /* Asegura que ambos botones usen el mismo ancho */
-    padding: 5px 10px;
-    color: white;
-    border: none;
-    border-radius: 4px;
-    font-size: 14px;
-    cursor: pointer;
-    box-sizing: border-box;
-}
+
+
+
+
+
+
+
+
+
 
 /* Estilo para botón EDITAR */
 .editar-button {
@@ -94,8 +92,8 @@
 }
 
 
-/* Estilo para botón ELIMINAR */
-.eliminar-button {
+/* Estilo para botón DESACTIVAR */
+.desactivar-button {
     align-self: start;
     margin-top: 10px;
     background-color: #dc3545;
@@ -106,9 +104,36 @@
     cursor: pointer;
     font-size: 14px;
 }
-.eliminar-button:hover {
+.desactivar-button:hover {
     background-color: #c82333;
 }
+
+/* Estilo para botón REACTIVAR */
+.reactivar-button {
+    align-self: start;
+    margin-top: 10px;
+    background-color: green;
+    color: white;
+    border: none;
+    padding: 6px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+}
+.reactivar-button:hover {
+    background-color: rgb(8, 107, 8);
+}
+
+
+
+
+
+
+
+
+
+
+
 
 /* Contenedor vertical para botones */
 .acciones-botones {

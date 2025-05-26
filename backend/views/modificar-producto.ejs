@@ -1,10 +1,52 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Modificar producto</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modificar Producto</title>
+    <link rel="stylesheet" href="/styles/global.css">
+    <link rel="stylesheet" href="/styles/altaymod-producto.css">
 </head>
 <body>
-  <h1>Modificar producto</h1>
+    <div class="alumnos-container">
+        <p>Freijomil Bruno</p>
+        <p>Gonzalez Paula</p>
+        <p>Sanchez Franco Nicolas</p>
+    </div>
+
+    <header>
+        <img src="/assets/imgs/gameLogo.jpg" alt="shop logo">
+        <h1>G4ME $T0RE</h1>
+    </header>
+
+    <!-- IMPORTANTE: action y method -->
+    <form action="/juegos/modificar-producto/<%= juego.id %>" method="POST">
+        <h1>Modificar datos de producto</h1>
+
+        <label>Nombre:</label>
+        <input type="text" name="nombre" id="input-nombre" value="<%= juego.nombre %>" required>
+
+        <label>Plataforma:</label>
+        <select name="plataforma" id="input-plataforma" required>
+            <option value="PlayStation" <%= juego.plataforma === 'PlayStation' ? 'selected' : '' %>>Playstation</option>
+            <option value="Xbox" <%= juego.plataforma === 'Xbox' ? 'selected' : '' %>>Xbox</option>
+        </select>
+
+        <label>Precio:</label>
+        <input type="number" name="precio" id="input-precio" value="<%= juego.precio %>" required>
+
+        <label>URL de imagen:</label>
+        <input type="text" name="imagen" id="input-urlimg" value="<%= juego.imagen %>" required>
+
+        <button type="submit">Modificar</button>
+        <button id="volver-button" type="button">Volver</button>
+    </form>
 </body>
+
+<script>
+    // Volver al dashboard
+    document.getElementById("volver-button").addEventListener("click", () => {
+        window.location.href = '/juegos/dashboard';
+    });
+</script>
 </html>
