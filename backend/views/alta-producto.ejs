@@ -1,33 +1,52 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Nuevo Producto</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="/styles/global.css">
+    <link rel="stylesheet" href="/styles/altaymod-producto.css">
 </head>
 <body>
-    <h1>Crear nuevo producto</h1>
-    <form action="/crear" method="POST">
+    <div class="alumnos-container">
+        <p>Freijomil Bruno</p>
+        <p>Gonzalez Paula</p>
+        <p>Sanchez Franco Nicolas</p>
+    </div>
+    <header>
+        <img src="../../assets/imgs/gameLogo.jpg" alt="shop logo">
+        <h1>G4ME $T0RE</h1>
+    </header>
+
+    <form>
+        <h1>Ingresar datos de nuevo producto</h1>
+
         <label>Nombre:</label>
-        <input type="text" name="nombre" required><br>
+        <input type="text" name="" id="input-nombre">
 
         <label>Plataforma:</label>
-        <select name="plataforma">
+        <select id="input-plataforma">
             <option value="Playstation">Playstation</option>
             <option value="Xbox">Xbox</option>
-        </select><br>
+        </select>
 
         <label>Precio:</label>
-        <input type="number" step="0.01" name="precio" required><br>
+        <input type="text" name="" id="input-precio">
 
-        <label>URL de Imagen:</label>
-        <input type="text" name="imagen" required><br>
+        <label>URL de imagen:</label>
+        <input type="text" name="" id="input-urlimg">
 
-        <label>Disponible:</label>
-        <select name="disponible">
-            <option value="true">true</option>
-            <option value="false">false</option>
-        </select><br>
-
-        <button type="submit">Agregar</button>
+        <button id="agregar-button" type="button">Agregar</button>
+        <button id="volver-button" type="button">Volver</button>
     </form>
 </body>
+<script>
+
+    /* Función para volver al dashboard al presionar el botón "VOLVER" */
+    document.getElementById("volver-button").addEventListener("click", ()=>{
+        window.location.href = '/juegos/dashboard';
+    })
+
+
+</script>
 </html>
