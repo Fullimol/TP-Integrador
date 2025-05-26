@@ -1,4 +1,4 @@
-const { selectUsuarios } = require("../db");
+const {getUsuarioPorEmail, selectUsuarios} = require("../models/usuariosModels");
 
 
 // aca tengo que hacer la función para traer los usuarios
@@ -11,9 +11,26 @@ async function getUsuarios(req, res) {
     }
 }
 
+//funcion de login
+async function loginUsuario(req, res) {
+  const { email, password } = req.body; //de la request me traigo el email y contraseña
 
-//            (!)   PENSAR COMO HACER PARA QUE SOLO UN USUARIO EN LA BD PUEDA LOGUEARSE, ADEMAS.. ENCRIPTAR CONTRASEÑA.
+  try {
+    const usuario = await getUsuarioPorEmail(email); //obtengo el usuario por su email
+
+    // Si el usuario no existe o la contraseña no coincide, mostrar error en login
+    if (!usuario || password !== usuario.password) {
+      return res.render('login', { error: 'Usuario o contraseña incorrectos' });
+    }
+
+    //login exitoso: redirige al dashboard
+    return res.redirect('/dashboard');
+
+  } catch (error) {
+    console.error(error);
+    return res.render('login', { error: 'Error en el servidor. Por favor intente más tarde.' });
+  }
+}
 
 
-
-module.exports = { getUsuarios };
+module.exports = { getUsuarios, loginUsuario };
