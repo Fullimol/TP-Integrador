@@ -38,3 +38,13 @@ INSERT INTO juegos (nombre, plataforma, precio, imagen, disponible) VALUES
 ('Street Fighter 6', 'Playstation', 59.99, 'https://juegosdigitalesargentina.com/files/images/productos/1685745024-street-fighter-vi-ps5-0.jpg', true),
 ('GTA VI', 'Playstation', 159.99, 'https://juegosdigitalesargentina.com/files/images/productos/1746638760-grand-theft-auto-vi-ps5-pre-orden-0.webp', true),
 ('Crash Racing', 'Playstation', 19.99, 'https://juegosdigitalesargentina.com/files/images/productos/1624656741-crash-team-racing-nitro-fueled-ps5.jpg', true);
+
+
+CREATE TABLE IF NOT EXISTS usuarios (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    email VARCHAR(255) NOT NULL UNIQUE,
+    password VARCHAR(255) NOT NULL
+);
+
+INSERT INTO usuarios (email, password) VALUES
+('admin@gamestore.com', '1234');
