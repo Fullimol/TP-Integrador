@@ -24,7 +24,7 @@ async function loginUsuario(req, res) {
     }
 
     //login exitoso: redirige al dashboard
-    return res.redirect('/dashboard');
+    return res.redirect('/juegos/dashboard');
 
   } catch (error) {
     console.error(error);
