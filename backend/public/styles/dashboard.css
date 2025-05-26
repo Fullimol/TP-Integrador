@@ -36,23 +36,6 @@
     flex: 1;
 }
 
-.editar-button {
-    align-self: start;
-    margin-top: 10px;
-    background-color: #007bff;
-    color: white;
-    border: none;
-    padding: 6px 10px;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 14px;
-}
-
-.editar-button:hover {
-    background-color: #0056b3;
-}
-
-
 
 
 
@@ -96,7 +79,15 @@
 
 /* Estilo para botón EDITAR */
 .editar-button {
+    align-self: start;
+    margin-top: 10px;
     background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 6px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
 }
 .editar-button:hover {
     background-color: #0056b3;
@@ -105,7 +96,15 @@
 
 /* Estilo para botón ELIMINAR */
 .eliminar-button {
+    align-self: start;
+    margin-top: 10px;
     background-color: #dc3545;
+    color: white;
+    border: none;
+    padding: 6px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
 }
 .eliminar-button:hover {
     background-color: #c82333;

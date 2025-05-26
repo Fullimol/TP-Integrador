@@ -1,6 +1,6 @@
 // aca va las funciones get, post, delete y put
 
-const { selectJuegos, deleteJuego, actualizar, agregar } = require('../models/juegosModels');
+const { selectJuegos, deleteJuego, actualizar, agregar, selectJuegosPorPlataforma } = require('../models/juegosModels');
 
 //obtener todos los juegos de la base de datos:
 async function getJuegos(req, res) {
@@ -65,6 +65,22 @@ async function renderJuegos(req, res) {
         res.status(500).send('Error al renderizar la vista');
     }
 }
+
+/* ESTUDIAR PASO A PASO */
+async function getJuegosPorPlataforma(req,res){
+    const { plataforma } = req.query;
+
+    try {
+        const juegos = await selectJuegosPorPlataforma(plataforma);
+        res.json(juegos);
+    } catch (err) {
+        console.error(err);
+        res.status(500).json({ error: 'Error al filtrar los juegos' });
+    }
+}
+
+
+
 // ------------------- Función para pasar los juegos a EJS ------------------- 
 
 
@@ -74,5 +90,6 @@ module.exports = {
     eliminarJuego,
     actualizarJuego,
     agregarJuego,
-    renderJuegos
+    renderJuegos,
+    getJuegosPorPlataforma
 };

@@ -42,10 +42,27 @@ async function agregar(nombre, plataforma, precio, imagen, disponible){
     console.log(resultado);
 }
 
+//Realizar SELECT filtrando por plataforma
+const selectJuegosPorPlataforma = async (plataforma) => {
+    const db = await conectar();
+
+    let query = 'SELECT * FROM juegos';
+    let valores = [];
+
+    if (plataforma && plataforma !== 'Todos') {
+        query += ' WHERE plataforma = ?';
+        valores.push(plataforma);
+    }
+
+    const [filas] = await db.query(query, valores);
+    return filas; // devuelve el array de resultados
+};
+
 
 module.exports = {
     selectJuegos,
     deleteJuego,
     actualizar,
-    agregar
+    agregar,
+    selectJuegosPorPlataforma
 };
