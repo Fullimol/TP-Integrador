@@ -29,10 +29,5 @@ const usuariosRutas = require('./routes/usuariosRutas');
 app.use('/usuarios', usuariosRutas);
 
 
-// Renderizar views/dashboard.ejs, para poder ir desde el usuarios/logim
-app.get('/dashboard', (req, res) => {
-  res.render('dashboard'); 
-});
-
 // Escuchar
 app.listen(3000, () => console.log('Servidor escuchando en http://localhost:3000'));
