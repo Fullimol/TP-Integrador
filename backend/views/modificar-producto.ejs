@@ -24,19 +24,19 @@
         <h1>Modificar datos de producto</h1>
 
         <label>Nombre:</label>
-        <input type="text" name="nombre" id="input-nombre" value="<%= juego.nombre %>" required>
+        <input type="text" name="" id="input-nombre">
 
         <label>Plataforma:</label>
-        <select name="plataforma" id="input-plataforma" required>
-            <option value="PlayStation" <%= juego.plataforma === 'PlayStation' ? 'selected' : '' %>>Playstation</option>
-            <option value="Xbox" <%= juego.plataforma === 'Xbox' ? 'selected' : '' %>>Xbox</option>
+        <select id="input-plataforma">
+            <option value="Playstation">Playstation</option>
+            <option value="Xbox">Xbox</option>
         </select>
 
         <label>Precio:</label>
-        <input type="number" name="precio" id="input-precio" value="<%= juego.precio %>" required>
+        <input type="text" name="" id="input-precio">
 
         <label>URL de imagen:</label>
-        <input type="text" name="imagen" id="input-urlimg" value="<%= juego.imagen %>" required>
+        <input type="text" name="" id="input-urlimg">
 
         <button type="submit">Modificar</button>
         <button id="volver-button" type="button">Volver</button>

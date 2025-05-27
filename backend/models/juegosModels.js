@@ -58,11 +58,18 @@ const selectJuegosPorPlataforma = async (plataforma) => {
     return filas; // devuelve el array de resultados
 };
 
+//Función para actualizar disponibilidad (Se usa en los botones para reactivar y desactivar)
+async function actualizarDisponibilidad(id, disponible) {
+    const db = await conectar();
+    await db.query('UPDATE juegos SET disponible = ? WHERE id = ?', [disponible, id]);
+}
+
 
 module.exports = {
     selectJuegos,
     deleteJuego,
     actualizar,
     agregar,
-    selectJuegosPorPlataforma
+    selectJuegosPorPlataforma,
+    actualizarDisponibilidad
 };

@@ -28,7 +28,8 @@
             <p>Filtrar por:</p>
             <button type="button" id="todos-button" class="button btn-filtrar" data-plataforma="Todos">Todos</button>
             <button type="button" id="xbox-button" class="button btn-filtrar" data-plataforma="Xbox">Xbox</button>
-            <button type="button" id="play-button" class="button btn-filtrar"data-plataforma="PlayStation">PlayStation</button>
+            <button type="button" id="play-button" class="button btn-filtrar"
+                data-plataforma="PlayStation">PlayStation</button>
         </div>
 
         <div class="contenedor-altaproducto">
@@ -37,7 +38,7 @@
 
 
 
-
+        <!-- Los datos de la variable "juegos" se pasan en carpeta juegosRutas.js (router.get('/dashboard', renderJuegos);),la variable juegos debe de ser pasada al renderizar express-->
         <div id="productos-container">
             <% if (juegos && juegos.length> 0) { %>
                 <% juegos.forEach(juego=> { %>
@@ -47,12 +48,15 @@
                             <h4>
                                 <%= juego.nombre %>
                             </h4>
-                            <p>Precio: $<%= juego.precio %></p>
-                            <p>Disponibilidad: <%= juego.disponible %></p>
-                            <p>Plataforma: <%= juego.plataforma %></p>
+                            <p>Precio: $<%= juego.precio %>
+                            </p>
+                            <p>Disponibilidad: <%= juego.disponible %>
+                            </p>
+                            <p>Plataforma: <%= juego.plataforma %>
+                            </p>
                             <div class="acciones-botones">
                                 <button class="editar-button" data-id="<%= juego.id %>">Modificar</button>
-                                <button class="desactivar-button" data-id="<%= juego.id %>">Desactivar</button>
+                                <button class="desactivar-button" data-id="<%= juego.id %>" data-disponible="<%= juego.disponible %>">Desactivar</button>
                                 <button class="reactivar-button" data-id="<%= juego.id %>">Reactivar</button>
                             </div>
                         </div>
@@ -73,11 +77,20 @@
 </body>
 
 <script>
-    document.getElementById("altaproducto-button").addEventListener("click", ()=>{
+
+    /* FUNCIÓN BOTÓN ALTA PRODUCTO */
+    document.getElementById("altaproducto-button").addEventListener("click", () => {
         window.location.href = '/juegos/alta-producto';
     })
 
+    /* FUNCIÓN BOTÓN VOLVER LOGIN */
+    document.getElementById("volverlogin-button").addEventListener("click", () => {
+        /*
+        Logica para volver a login
+        window.location.href = '/usuarios/login'; */
+    })
 
+    /* FUNCIÓN BOTÓNES DE FILTRADO */
     document.addEventListener('DOMContentLoaded', () => {
         const botones = document.querySelectorAll('.btn-filtrar');
 
@@ -122,28 +135,61 @@
         });
 
         function activarBotones() {
+
+
+
+            // Botón Desactivar
             document.querySelectorAll('.desactivar-button').forEach(btn => {
                 btn.addEventListener('click', async () => {
                     const id = btn.dataset.id;
-                    if (!confirm('¿Estás seguro de que querés desactivar este juego?')) return;
+                    const disponible = parseInt(btn.dataset.disponible);
 
-                    /* const res = await fetch(`/juegos/delete/${id}`, { method: 'DELETE' });
-                    const data = await res.json();
+                    if (disponible === 1) {
+                        if (!confirm('¿Estás seguro de que querés desactivar este juego?')) return;
 
-                    alert(data.message || data.error); */
-                    if (res.ok) location.reload();
+                        try {
+                            const res = await fetch(`/juegos/desactivar/${id}`, { method: 'PUT' });
+                            const data = await res.json();
+                            alert(data.message || data.error);
+                            if (res.ok) location.reload();
+                        } catch (error) {
+                            console.error('Error al desactivar el juego:', error);
+                        }
+                    } else {
+                        alert('El juego ya está desactivado.');
+                    }
                 });
             });
 
-            /* Acción botón modificar para ir a modificar-producto */
+
+
+            // Botón Modificar
             document.querySelectorAll('.editar-button').forEach(btn => {
                 btn.addEventListener('click', () => {
-                    /* 
-                    LOGICA PARA REDIRIGIR AL ARCHIVO DE MODIFICACIÓN DE PRODUCTO
                     const id = btn.dataset.id;
-                    window.location.href = `/juegos/modificar-producto?id=${id}`; */
+                    window.location.href = `/juegos/modificar-producto/${id}`;
                 });
             });
+
+
+
+            //Botón reactivar
+            document.querySelectorAll('.reactivar-button').forEach(btn => {
+                btn.addEventListener('click', async () => {
+                    const id = btn.dataset.id;
+
+                    try {
+                        const res = await fetch(`/juegos/reactivar/${id}`, { method: 'PUT' });
+                        const data = await res.json();
+                        alert(data.message || data.error);
+                        if (res.ok) location.reload();
+                    } catch (error) {
+                        console.error('Error al reactivar:', error);
+                    }
+                });
+            });
+
+
         }
 
         activarBotones();
