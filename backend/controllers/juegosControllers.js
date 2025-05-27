@@ -1,6 +1,6 @@
 // aca va las funciones get, post, delete y put
 
-const { selectJuegos, deleteJuego, actualizar, agregar, selectJuegosPorPlataforma, actualizarDisponibilidad } = require('../models/juegosModels');
+const { selectJuegos, deleteJuego, actualizar, agregar, selectJuegosPorPlataforma, actualizarDisponibilidad, obtenerPorId} = require('../models/juegosModels');
 
 //obtener todos los juegos de la base de datos:
 async function getJuegos(req, res) {
@@ -25,7 +25,8 @@ async function eliminarJuego(req, res) {
     try {
         const { id } = req.params;
         await deleteJuego(id);
-        res.json({ message: 'Juego eliminado correctamente' });
+        alert("Juego actualizado correctamente")
+        res.redirect('/juegos/dashboard');
     } catch (err) {
         res.status(500).json({ error: 'Error al eliminar el juego' });
     }
@@ -37,7 +38,7 @@ async function actualizarJuego(req, res) {
         const { id } = req.params;
         const { nombre, plataforma, precio, imagen, disponible } = req.body;
         await actualizar(id, nombre, plataforma, precio, imagen, disponible);
-        res.json({ message: 'Juego actualizado correctamente' });
+        res.redirect('/juegos/dashboard');
     } catch (err) {
         res.status(500).json({ error: 'Error al actualizar el juego' });
         console.log(err);
@@ -47,7 +48,7 @@ async function actualizarJuego(req, res) {
 //agregar un juego nuevo a BD:
 async function agregarJuego(req, res) {
     try {
-        const { nombre, plataforma, precio, imagen} = req.body;
+        const { nombre, plataforma, precio, imagen} = req.body; //Aca se recibe el cuerpo del post
         await agregar(nombre, plataforma, precio, imagen, 1);
         res.json({ message: 'Juego agregado correctamente' });
     } catch (err) {
@@ -83,7 +84,7 @@ async function getJuegosPorPlataforma(req,res){
 async function desactivarJuego(req, res) {
     const { id } = req.params;
     try {
-        await actualizarDisponibilidad(id, 0);
+        await actualizarDisponibilidad(id, 0); //Se cambia a 0 para desativar
         res.json({ message: 'Juego desactivado correctamente.' });
     } catch (err) {
         console.error(err);
@@ -102,6 +103,16 @@ async function reactivarJuego(req, res) {
     }
 }
 
+async function mostrarFormularioModificar(req, res) {
+    try {
+        const { id } = req.params;
+        const juego = await obtenerPorId(id);
+        res.render('modificar-producto', { juego });
+    } catch (error) {
+        res.status(500).send('Error al obtener el juego para modificar.');
+    }
+}
+
 
 // ------------------- Función para pasar los juegos a EJS ------------------- 
 
@@ -115,5 +126,6 @@ module.exports = {
     renderJuegos,
     getJuegosPorPlataforma,
     desactivarJuego,
-    reactivarJuego
+    reactivarJuego,
+    mostrarFormularioModificar
 };

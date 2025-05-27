@@ -56,16 +56,18 @@
         const precio = document.getElementById("input-precio").value;
         const imagen = document.getElementById("input-urlimg").value;
 
-        const juego = { nombre, plataforma, precio, imagen };
+        /* Creación de objeto juego con los valores obtenidos */
+        const juego = { nombre, plataforma, precio, imagen }; 
 
 
         // Validación para chequear que esten los campos correctos
+        //isNan verifica que precio sea un número. Si algo falla, tira alerta y la función se finaliza con un return 
         if (!nombre || isNaN(precio) || !imagen) {
             alert("Por favor, completá todos los campos correctamente.");
             return;
         }
 
-
+        //Hace una solicitud al servidor POST enviando el objeto juego en el cuerpo del mensaje
         try {
             const res = await fetch('/juegos/add', {
                 method: 'POST',
@@ -75,6 +77,7 @@
                 body: JSON.stringify(juego)
             });
 
+            //Espera respuesta del servidor y lo convierte en JSON
             const data = await res.json();
             alert(data.message || data.error);
 
