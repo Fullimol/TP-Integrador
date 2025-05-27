@@ -64,6 +64,13 @@ async function actualizarDisponibilidad(id, disponible) {
     await db.query('UPDATE juegos SET disponible = ? WHERE id = ?', [disponible, id]);
 }
 
+async function obtenerPorId(id) {
+    const db = await conectar();
+    const [result] = await db.execute('SELECT * FROM juegos WHERE id = ?', [id]);
+    await db.end();
+    return result[0]; // retorna el 1er y unico resultado
+}
+
 
 module.exports = {
     selectJuegos,
@@ -71,5 +78,6 @@ module.exports = {
     actualizar,
     agregar,
     selectJuegosPorPlataforma,
-    actualizarDisponibilidad
+    actualizarDisponibilidad,
+    obtenerPorId
 };

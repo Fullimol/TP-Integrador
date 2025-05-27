@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const { getJuegos, eliminarJuego, actualizarJuego, agregarJuego, renderJuegos, getJuegosPorPlataforma, desactivarJuego, reactivarJuego} = require('../controllers/juegosControllers');
+const { getJuegos, eliminarJuego, actualizarJuego, agregarJuego, renderJuegos, getJuegosPorPlataforma, desactivarJuego, reactivarJuego, mostrarFormularioModificar} = require('../controllers/juegosControllers');
 
 
 
@@ -13,9 +13,10 @@ router.get('/get', getJuegos);
 router.delete('/delete/:id', eliminarJuego);
 
 //actualizar un juego por id
-router.put('/update/:id', actualizarJuego);
+router.get('/modificar-producto/:id', mostrarFormularioModificar);
+router.post('/modificar-producto/:id', actualizarJuego);
 
-//agregar un juego nuevo
+//agregar un juego nuevo (definición de ruta en servidor express para manejar solicitudes tipo post, la función que se pasa como parametro es para saber que hacer con los datos)
 router.post('/add', agregarJuego);
 
 // Ruta para mostrar la vista con los juegos
@@ -47,9 +48,9 @@ router.get('/alta-producto', (req, res) => {
     res.render('../views/alta-producto.ejs');
 });
 
-router.get('/modificar-producto', (req, res) => {
+/* router.get('/modificar-producto', (req, res) => {
     res.render('../views/modificar-producto.ejs');
-});
+}); */
 
 
 
