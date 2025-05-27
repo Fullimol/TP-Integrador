@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const { getJuegos, eliminarJuego, actualizarJuego, agregarJuego, renderJuegos, getJuegosPorPlataforma} = require('../controllers/juegosControllers');
+const { getJuegos, eliminarJuego, actualizarJuego, agregarJuego, renderJuegos, getJuegosPorPlataforma, desactivarJuego, reactivarJuego} = require('../controllers/juegosControllers');
 
 
 
@@ -18,11 +18,18 @@ router.put('/update/:id', actualizarJuego);
 //agregar un juego nuevo
 router.post('/add', agregarJuego);
 
-// Ruta para mostrar la vista con los juegos cargados dinámicamente
+// Ruta para mostrar la vista con los juegos
 router.get('/dashboard', renderJuegos);
 
 //Ruta para filtrar los juegos
 router.get('/filtrar', getJuegosPorPlataforma);
+
+//Para desactivar juegos
+router.put('/desactivar/:id', desactivarJuego);
+
+//Para activar juegos
+router.put('/reactivar/:id', reactivarJuego);
+
 
 
 
