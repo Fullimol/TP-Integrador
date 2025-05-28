@@ -21,7 +21,7 @@ function obtenerProductos() {
         .then(response => response.json())
         .then(data => {
             // Filtrar productos disponibles
-            productos = data.filter(p => p.disponible !== false);
+            productos = data.filter(p => p.disponible !== 0);
 
             carrito = JSON.parse(localStorage.getItem('carrito')) || [];
             mostrarProductosPaginados();
