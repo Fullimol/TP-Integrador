@@ -1,201 +1,171 @@
-
+/* CONTENEDOR PRINCIPAL DE PRODUCTOS */
 #productos-container {
     display: flex;
     flex-direction: column;
-    gap: 15px;
-    padding: 20px;
-    max-width: 800px;
+    gap: 20px;
+    padding: 30px;
+    max-width: 900px;
     margin: 0 auto;
 }
 
+/* TARJETAS DE PRODUCTO */
 .card {
     display: flex;
     align-items: center;
-    gap: 15px;
-    border: 1px solid #ccc;
-    border-radius: 8px;
-    background-color: white;
-    padding: 10px;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    gap: 20px;
+    padding: 15px;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    background-color: #fff;
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.08);
+    transition: transform 0.2s ease;
 }
 
 .card:hover {
-    transform: scale(1.03);
+    transform: scale(1.02);
 }
 
 .card img {
-    width: 80px;
+    width: 100px;
     height: auto;
-    border-radius: 5px;
+    border-radius: 8px;
 }
 
+/* CONTENIDO DE CADA TARJETA */
 .card-content {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
     flex: 1;
-}
-
-
-
-
-/* EDICIÓN DE LA TABLA */
-.tabla-productos {
-    width: 100%;
-    max-width: 1000px;
-    margin: 20px auto;
-    border-collapse: collapse;
-    font-family: Arial, sans-serif;
-}
-
-.tabla-productos thead {
-    background-color: #f4f4f4;
-}
-
-.tabla-productos th, .tabla-productos td {
-    padding: 10px 15px;
-    text-align: left;
-    border-bottom: 1px solid #ccc;
-}
-
-.tabla-img {
-    width: 50px;
-    height: auto;
-    border-radius: 5px;
-}
-
-
-
-
-
-
-
-
-
-
-
-
-/* Estilo para botón EDITAR */
-.editar-button {
-    align-self: start;
-    margin-top: 10px;
-    background-color: #007bff;
-    color: white;
-    border: none;
-    padding: 6px 10px;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 14px;
-}
-.editar-button:hover {
-    background-color: #0056b3;
-}
-
-
-/* Estilo para botón DESACTIVAR */
-.desactivar-button {
-    align-self: start;
-    margin-top: 10px;
-    background-color: #dc3545;
-    color: white;
-    border: none;
-    padding: 6px 10px;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 14px;
-}
-.desactivar-button:hover {
-    background-color: #c82333;
-}
-
-/* Estilo para botón REACTIVAR */
-.reactivar-button {
-    align-self: start;
-    margin-top: 10px;
-    background-color: green;
-    color: white;
-    border: none;
-    padding: 6px 10px;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 14px;
-}
-.reactivar-button:hover {
-    background-color: rgb(8, 107, 8);
-}
-
-
-
-
-
-
-
-
-
-
-
-
-/* Contenedor vertical para botones */
-.acciones-botones {
     display: flex;
     flex-direction: column;
     gap: 5px;
 }
 
-.contenedor-altaproducto {
-    text-align: center;
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-.container-buttons {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    gap: 1rem;
-    padding: 1rem 2rem;
-    background-color: #f0f0f0;
-    border-radius: 8px;
-    margin: 1rem auto;
-    max-width: 600px;
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
-    justify-content: center;
-
-}
-
-.container-buttons p {
+.card-content h4 {
     margin: 0;
-    font-weight: bold;
-    font-size: 1.1rem;
+    font-size: 18px;
     color: #333;
 }
 
-
-#pagina-actual{
-    color: black!important;
+.card-content p {
+    margin: 2px 0;
+    color: #555;
 }
 
-/* Responsive */
-@media (max-width: 500px) {
-    .container-buttons {
-        flex-direction: column;
-        align-items: stretch;
-        gap: 0.75rem;
-        text-align: center;
-    }
+/* BOTONES DE ACCIÓN */
+.acciones-botones {
+    display: flex;
+    gap: 10px;
+    margin-top: 10px;
+}
 
-    .container-buttons button {
-        width: 100%;
-    }
+.editar-button,
+.desactivar-button,
+.reactivar-button {
+    padding: 6px 12px;
+    border: none;
+    border-radius: 5px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.editar-button {
+    background-color: #007bff;
+    color: white;
+}
+
+.editar-button:hover {
+    background-color: #0056b3;
+}
+
+.desactivar-button {
+    background-color: #dc3545;
+    color: white;
+}
+
+.desactivar-button:hover {
+    background-color: #c82333;
+}
+
+.reactivar-button {
+    background-color: #28a745;
+    color: white;
+}
+
+.reactivar-button:hover {
+    background-color: #218838;
+}
+
+/* TABLA DE PRODUCTOS */
+.tabla-productos {
+    width: 100%;
+    max-width: 1000px;
+    margin: 30px auto;
+    border-collapse: collapse;
+    font-family: Arial, sans-serif;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+.tabla-productos thead {
+    background-color: #f8f9fa;
+}
+
+.tabla-productos th,
+.tabla-productos td {
+    padding: 12px 18px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+.tabla-img {
+    width: 60px;
+    height: auto;
+    border-radius: 5px;
+}
+
+/* BOTONES SUPERIORES Y AGREGAR */
+.container-buttons,
+.contenedor-altaproducto {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin: 20px 0;
+    flex-wrap: wrap;
+}
+
+.button {
+    padding: 8px 16px;
+    font-size: 14px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    background-color: #6c63ff;
+    color: white;
+    transition: background-color 0.2s ease;
+}
+
+.button:hover {
+    background-color: #574fd6;
+}
+
+/* BOTÓN DE VOLVER */
+#volverlogin-button {
+    cursor: pointer;
+    background-color: #6c63ff;
+    color: white;
+    padding: 10px 18px;
+    border-radius: 6px;
+    text-align: center;
+    font-weight: bold;
+}
+
+#volverlogin-button:hover {
+    background-color: #574fd6;
+}
+
+#btn-darkMode {
+    background: transparent;
+    border: none;
+    font-size: 20px;
+    color: white;
+    cursor: pointer;
 }

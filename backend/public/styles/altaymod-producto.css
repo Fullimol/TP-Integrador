@@ -50,27 +50,14 @@ form button {
     cursor: pointer;
 }
 
-#agregar-button {
+.aceptar-button {
     background-color: #28a745;
     margin-right: 4%;
 }
 
-#agregar-button:hover {
+.aceptar-button:hover {
     background-color: #218838;
 }
-
-
-
-#modificar-button {
-    background-color: #28a745;
-    margin-right: 4%;
-}
-
-#modificar-button:hover {
-    background-color: #218838;
-}
-
-
 
 #volver-button {
     background-color: #6c757d;
