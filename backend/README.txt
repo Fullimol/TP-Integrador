@@ -48,3 +48,13 @@ CREATE TABLE IF NOT EXISTS usuarios (
 
 INSERT INTO usuarios (email, password) VALUES
 ('admin@gamestore.com', '1234');
+
+
+
+CREATE TABLE ventas (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    fecha VARCHAR(10),
+    cliente VARCHAR(100),
+    productos TEXT,
+    total DECIMAL(10,2)
+);

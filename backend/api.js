@@ -28,6 +28,9 @@ app.use('/juegos', juegosRutas); // incluye rutas de vistas y lógica relacionad
 const usuariosRutas = require('./routes/usuariosRutas');
 app.use('/usuarios', usuariosRutas);
 
+const ventasRutas = require('./routes/ventasRutas');
+app.use('/ventas', ventasRutas);
+
 
 // Escuchar
 app.listen(3000, () => console.log('Servidor escuchando en http://localhost:3000'));
