@@ -27,10 +27,43 @@ function mostrarTicket() {
     `;
 }
 
-mostrarTicket();
-
 // Generar PDF:
 btnImprimirTicket.addEventListener('click', () => {
     html2pdf().from(contenedor).save();
     console.log("Ticket impreso");
 });
+
+
+// guardar ticket en bd con mi url de mi api:
+async function guardarVenta() {
+    const fecha = new Date().toLocaleDateString('es-AR', {
+        day: '2-digit',
+        month: '2-digit',
+        year: 'numeric'
+    });
+
+    const venta = {
+        fecha: fecha,
+        cliente: nombre,
+        productos: carrito,
+        total: parseFloat(total)
+    };
+
+    try {
+        const response = await fetch('http://localhost:3000/ventas/add', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(venta)
+        });
+
+        const data = await response.json();
+        console.log('Venta guardada:', data);
+    } catch (error) {
+        console.error('Error al guardar la venta:', error);
+    }
+}
+
+mostrarTicket();
+guardarVenta()
