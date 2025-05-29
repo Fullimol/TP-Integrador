@@ -1,4 +1,5 @@
 const {getUsuarioPorEmail, selectUsuarios} = require("../models/usuariosModels");
+const { generarJWT } = require('../utils/jwt');
 
 
 // aca tengo que hacer la función para traer los usuarios
@@ -18,17 +19,29 @@ async function loginUsuario(req, res) {
   try {
     const usuario = await getUsuarioPorEmail(email); //obtengo el usuario por su email
 
-    // Si el usuario no existe o la contraseña no coincide, mostrar error en login
+    //Si el usuario no existe o la contraseña no coincide, lanzo error
     if (!usuario || password !== usuario.password) {
       return res.render('login', { error: 'Usuario o contraseña incorrectos' });
     }
 
-    //login exitoso: redirige al dashboard
-    return res.redirect('/juegos/dashboard');
+    //Login exitoso: generacion de token
+    const payload = {id: usuario.id, email: usuario.email};
+    const token = generarJWT(payload);
+
+    //guardo token en cookie
+    res.cookie('token', token, {
+      httpOnly: true, //para que no pueda ser leido por JS del cliente
+      secure: false, //cambiar a true en produccion con HTTPS
+      sameSite: 'Lax', 
+      maxAge: 10 * 60 * 1000 //duracion de la cookie: 10 min
+    });
+
+    //redirigir al dashboard luego del login exitoso
+    return res.status(200).redirect('/juegos/dashboard');
 
   } catch (error) {
     console.error(error);
-    return res.render('login', { error: 'Error en el servidor. Por favor intente más tarde.' });
+    return res.status(500).json({ error: 'Error interno del servidor' });
   }
 }
 

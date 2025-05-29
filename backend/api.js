@@ -2,6 +2,8 @@ const express = require('express');
 const app = express();
 const path = require('path');
 
+require('dotenv').config();
+
 // cors: sirve para permitir la comunicación entre el frontend y el backend
 const cors = require('cors');
 app.use(cors({
