@@ -1,7 +1,9 @@
 const express = require('express');
 const router = express.Router();
+
 const { getJuegos, eliminarJuego, actualizarJuego, agregarJuego, renderJuegos, getJuegosPorPlataforma, desactivarJuego, reactivarJuego, mostrarFormularioModificar} = require('../controllers/juegosControllers');
 const { controlDeAccesoJWT } = require('../utils/middleProteccionRutas');
+
 
 
 
@@ -18,6 +20,10 @@ router.post('/modificar-producto/:id', controlDeAccesoJWT, actualizarJuego);
 
 //agregar un juego nuevo (definición de ruta en servidor express para manejar solicitudes tipo post, la función que se pasa como parametro es para saber que hacer con los datos)
 router.post('/add', controlDeAccesoJWT, agregarJuego);
+=======
+//agregar un nuevo juego (definición de ruta en servidor express para manejar solicitudes tipo post, la función que se pasa como parametro es para saber que hacer con los datos)
+router.post('/add', middlewareValidarJuego, agregarJuego);
+
 
 // Ruta para mostrar la vista con los juegos
 router.get('/dashboard',controlDeAccesoJWT, renderJuegos);
@@ -25,11 +31,12 @@ router.get('/dashboard',controlDeAccesoJWT, renderJuegos);
 //Ruta para filtrar los juegos
 router.get('/filtrar', controlDeAccesoJWT, getJuegosPorPlataforma);
 
-//Para desactivar juegos
-router.put('/desactivar/:id', controlDeAccesoJWT, desactivarJuego);
+// Para desactivar juegos
+router.put('/desactivar/:id', controlDeAccesoJWT, middlewareValidarIdParam, desactivarJuego);
 
-//Para activar juegos
-router.put('/reactivar/:id', controlDeAccesoJWT, reactivarJuego);
+// Para activar juegos
+router.put('/reactivar/:id', controlDeAccesoJWT, middlewareValidarIdParam, reactivarJuego);
+
 
 
 

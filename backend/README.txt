@@ -5,6 +5,9 @@ npm install cors
 npm install mysql2
 npm install -g nodemon
 npm install ejs
+npm install dotenv
+npm install jsonwebtoken
+npm install cookie-parser
 
 Usar en consola sobre la carpeta backend "nodemon api.js" para levantar servidor.
 
