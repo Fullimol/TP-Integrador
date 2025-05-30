@@ -1,15 +1,4 @@
 // ------------------- Middlewares validaciones ------------------- 
-function middlewareValidarJuego(req, res, next) {
-    const { nombre, plataforma, precio, imagen } = req.body;
-
-    //Si la req no cuenta con alguno de los datos, lanza error
-    if (!nombre || !plataforma || !precio || !imagen) {
-        return res.status(400).json({ error: 'Datos incompletos' });
-    }
-
-    next();
-}
-
 function middlewareValidarIdParam(req, res, next) {
     const { id } = req.params;
 
@@ -21,4 +10,4 @@ function middlewareValidarIdParam(req, res, next) {
     next();
 }
 
-module.exports = { middlewareValidarJuego, middlewareValidarIdParam };
+module.exports = {middlewareValidarIdParam };

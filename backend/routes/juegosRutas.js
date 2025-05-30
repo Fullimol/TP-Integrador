@@ -1,15 +1,13 @@
 const express = require('express');
 const router = express.Router();
 
-const { getJuegos, eliminarJuego, actualizarJuego, agregarJuego, renderJuegos, getJuegosPorPlataforma, desactivarJuego, reactivarJuego, mostrarFormularioModificar } = require('../controllers/juegosControllers');
+const { getJuegos, eliminarJuego, actualizarJuego, agregarJuego, renderJuegos, getJuegosPorPlataforma, desactivarJuego, reactivarJuego, mostrarFormularioModificar, mostrarPorPagina } = require('../controllers/juegosControllers');
 const { controlDeAccesoJWT } = require('../middlewares/middleProteccionRutas');
-const { middlewareValidarJuego, middlewareValidarIdParam } = require ('../middlewares/middleValidacionJuegos');
+const { middlewareValidarIdParam } = require ('../middlewares/middleValidacionJuegos');
 
 
 
 //            LOGICA:
-//obtener todos los juegos
-router.get('/get', getJuegos);
 
 // Eliminar un juego por id
 router.delete('/delete/:id', controlDeAccesoJWT, eliminarJuego);
@@ -21,12 +19,8 @@ router.post('/modificar-producto/:id', controlDeAccesoJWT, actualizarJuego);
 //agregar un juego nuevo (definición de ruta en servidor express para manejar solicitudes tipo post, la función que se pasa como parametro es para saber que hacer con los datos)
 router.post('/add', controlDeAccesoJWT, agregarJuego);
 
-//agregar un nuevo juego (definición de ruta en servidor express para manejar solicitudes tipo post, la función que se pasa como parametro es para saber que hacer con los datos)
-router.post('/add', middlewareValidarJuego, agregarJuego);
-
-
 // Ruta para mostrar la vista con los juegos
-router.get('/dashboard',controlDeAccesoJWT, renderJuegos);
+router.get('/dashboard',controlDeAccesoJWT, mostrarPorPagina);
 
 //Ruta para filtrar los juegos
 router.get('/filtrar', controlDeAccesoJWT, getJuegosPorPlataforma);
@@ -47,9 +41,9 @@ router.get('/login', (req, res) => {
     res.render('../views/login.ejs');
 });
 
-router.get('/dashboard', controlDeAccesoJWT, (req, res) => {
+/* router.get('/dashboard', controlDeAccesoJWT, (req, res) => {
     res.render('../views/dashboard.ejs');
-}); 
+});  */
 
 router.get('/alta-producto', controlDeAccesoJWT, (req, res) => {
     res.render('../views/alta-producto.ejs');

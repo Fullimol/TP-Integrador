@@ -25,19 +25,19 @@ async function deleteJuego(id) {
 }
 
 //actualizar un juego segun su id:
-async function actualizar(id, nombre, plataforma, precio, imagen, disponible){
+async function actualizar(id, nombre, plataforma, precio, imagen, disponible) {
     const db = await conectar();
     const qry = 'UPDATE juegos SET nombre=?, plataforma=?, precio=?, imagen=?, disponible=? WHERE id=?';
-    const resultado = await db.execute(qry,[nombre, plataforma, precio, imagen, disponible, id]);
+    const resultado = await db.execute(qry, [nombre, plataforma, precio, imagen, disponible, id]);
     await db.end();
     console.log(resultado);
 }
 
 //agregar un juego nuevo a un id nuevo:
-async function agregar(nombre, plataforma, precio, imagen, disponible){
+async function agregar(nombre, plataforma, precio, imagen, disponible) {
     const db = await conectar();
     const qry = 'INSERT INTO juegos (nombre, plataforma, precio, imagen, disponible) VALUES (?, ?, ?, ?, ?)';
-    const resultado = await db.execute(qry,[nombre, plataforma, precio, imagen, disponible]);
+    const resultado = await db.execute(qry, [nombre, plataforma, precio, imagen, disponible]);
     await db.end();
     console.log(resultado);
 }
@@ -71,6 +71,18 @@ async function obtenerPorId(id) {
     return result[0]; // retorna el 1er y unico resultado
 }
 
+async function obtenerJuegosPaginados(limit, offset) {
+    const db = await conectar();
+    const [juegos] = await db.query('SELECT * FROM juegos LIMIT ? OFFSET ?', [limit, offset]);
+    return juegos;
+}
+
+const contarTotalJuegos = async () => {
+    const db = await conectar();
+    const [result] = await db.query('SELECT COUNT(*) AS total FROM juegos');
+    return result[0].total;
+};
+
 
 module.exports = {
     selectJuegos,
@@ -79,5 +91,7 @@ module.exports = {
     agregar,
     selectJuegosPorPlataforma,
     actualizarDisponibilidad,
-    obtenerPorId
+    obtenerPorId,
+    obtenerJuegosPaginados,
+    contarTotalJuegos
 };

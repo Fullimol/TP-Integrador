@@ -1,6 +1,6 @@
 // aca va las funciones get, post, delete y put
 
-const { selectJuegos, deleteJuego, actualizar, agregar, selectJuegosPorPlataforma, actualizarDisponibilidad, obtenerPorId} = require('../models/juegosModels');
+const { selectJuegos, deleteJuego, actualizar, agregar, selectJuegosPorPlataforma, actualizarDisponibilidad, obtenerPorId, obtenerJuegosPaginados, contarTotalJuegos } = require('../models/juegosModels');
 
 //obtener todos los juegos de la base de datos:
 async function getJuegos(req, res) {
@@ -25,7 +25,6 @@ async function eliminarJuego(req, res) {
     try {
         const { id } = req.params;
         await deleteJuego(id);
-        alert("Juego actualizado correctamente")
         res.redirect('/juegos/dashboard');
     } catch (err) {
         res.status(500).json({ error: 'Error al eliminar el juego' });
@@ -48,7 +47,7 @@ async function actualizarJuego(req, res) {
 //agregar un juego nuevo a BD:
 async function agregarJuego(req, res) {
     try {
-        const { nombre, plataforma, precio, imagen} = req.body; //Aca se recibe el cuerpo del post
+        const { nombre, plataforma, precio, imagen } = req.body; //Aca se recibe el cuerpo del post
         await agregar(nombre, plataforma, precio, imagen, 1);
         res.json({ message: 'Juego agregado correctamente' });
     } catch (err) {
@@ -68,7 +67,7 @@ async function renderJuegos(req, res) {
 }
 
 //Función para mostrar juegos según plataforma
-async function getJuegosPorPlataforma(req,res){
+async function getJuegosPorPlataforma(req, res) {
     const { plataforma } = req.query;
 
     try {
@@ -115,32 +114,25 @@ async function mostrarFormularioModificar(req, res) {
     }
 }
 
-// ------------------- Función para pasar los juegos a EJS ------------------- 
+//Función para mostrar juegos por página
+async function mostrarPorPagina(req, res) {
+    const porPagina = 6;
+    const pagina = parseInt(req.query.page) || 1;
+    const offset = (pagina - 1) * porPagina;
 
+    const juegos = await obtenerJuegosPaginados(porPagina, offset);
+    const totalJuegos = await contarTotalJuegos();
+    const totalPaginas = Math.ceil(totalJuegos / porPagina);
 
-// ------------------- Middlewares validaciones ------------------- 
-/*function middlewareValidarJuego(req, res, next) {
-    const { nombre, plataforma, precio, imagen } = req.body;
-
-    //Si la req no cuenta con alguno de los datos, lanza error
-    if (!nombre || !plataforma || !precio || !imagen) {
-        return res.status(400).json({ error: 'Datos incompletos' });
-    }
-
-    next();
+    //Se pasan los datos a la vista
+    res.render('dashboard', {
+        juegos,
+        paginaActual: pagina,
+        totalPaginas
+    });
 }
 
-function middlewareValidarIdParam(req, res, next) {
-    const { id } = req.params;
-
-    //isNan verifica que precio sea un número
-    if (isNaN(id)) {
-        return res.status(400).json({ error: 'El ID debe ser un número' });
-    }
-
-    next();
-}*/
-// ------------------- Middlewares validaciones ------------------- 
+// ------------------- Función para pasar los juegos a EJS ------------------- 
 
 
 module.exports = {
@@ -153,6 +145,5 @@ module.exports = {
     desactivarJuego,
     reactivarJuego,
     mostrarFormularioModificar,
-    //middlewareValidarJuego,
-    //middlewareValidarIdParam
+    mostrarPorPagina
 };
