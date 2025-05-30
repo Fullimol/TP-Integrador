@@ -45,5 +45,16 @@ async function loginUsuario(req, res) {
   }
 }
 
+//funcion de deslogueo y eliminacion de cookie
+function logoutUsuario(req, res) {
+    res.clearCookie('token', { //borro la cookie llamada 'token'
+      httpOnly: true,
+      secure: false,
+      sameSite: 'Lax',
+      path: '/'
+    });
+    
+  res.redirect('/usuarios/login'); //esta redireccion vá aca por si alguien ingresa al endpoint '/usuarios/logout' directamente
+}
 
-module.exports = { getUsuarios, loginUsuario };
+module.exports = { getUsuarios, loginUsuario, logoutUsuario };
