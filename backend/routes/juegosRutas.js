@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 
-const { getJuegos, eliminarJuego, actualizarJuego, agregarJuego, renderJuegos, getJuegosPorPlataforma, desactivarJuego, reactivarJuego, mostrarFormularioModificar} = require('../controllers/juegosControllers');
+const { getJuegos, eliminarJuego, actualizarJuego, agregarJuego, renderJuegos, getJuegosPorPlataforma, desactivarJuego, reactivarJuego, mostrarFormularioModificar, middlewareValidarJuego, middlewareValidarIdParam} = require('../controllers/juegosControllers');
 const { controlDeAccesoJWT } = require('../utils/middleProteccionRutas');
 
 
@@ -20,7 +20,7 @@ router.post('/modificar-producto/:id', controlDeAccesoJWT, actualizarJuego);
 
 //agregar un juego nuevo (definición de ruta en servidor express para manejar solicitudes tipo post, la función que se pasa como parametro es para saber que hacer con los datos)
 router.post('/add', controlDeAccesoJWT, agregarJuego);
-=======
+
 //agregar un nuevo juego (definición de ruta en servidor express para manejar solicitudes tipo post, la función que se pasa como parametro es para saber que hacer con los datos)
 router.post('/add', middlewareValidarJuego, agregarJuego);
 
