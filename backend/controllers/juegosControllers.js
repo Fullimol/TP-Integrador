@@ -67,7 +67,7 @@ async function renderJuegos(req, res) {
     }
 }
 
-/* ESTUDIAR PASO A PASO */
+//Función para mostrar juegos según plataforma
 async function getJuegosPorPlataforma(req,res){
     const { plataforma } = req.query;
 
@@ -80,7 +80,7 @@ async function getJuegosPorPlataforma(req,res){
     }
 }
 
-
+//Función para desactivar juego
 async function desactivarJuego(req, res) {
     const { id } = req.params;
     try {
@@ -92,6 +92,7 @@ async function desactivarJuego(req, res) {
     }
 }
 
+//Función para actiar juego
 async function reactivarJuego(req, res) {
     const { id } = req.params;
     try {
@@ -103,6 +104,7 @@ async function reactivarJuego(req, res) {
     }
 }
 
+//Función para mostrar el formulario de modificación
 async function mostrarFormularioModificar(req, res) {
     try {
         const { id } = req.params;
@@ -113,9 +115,32 @@ async function mostrarFormularioModificar(req, res) {
     }
 }
 
-
 // ------------------- Función para pasar los juegos a EJS ------------------- 
 
+
+// ------------------- Middlewares validaciones ------------------- 
+function middlewareValidarJuego(req, res, next) {
+    const { nombre, plataforma, precio, imagen } = req.body;
+
+    //Si la req no cuenta con alguno de los datos, lanza error
+    if (!nombre || !plataforma || !precio || !imagen) {
+        return res.status(400).json({ error: 'Datos incompletos' });
+    }
+
+    next();
+}
+
+function middlewareValidarIdParam(req, res, next) {
+    const { id } = req.params;
+
+    //isNan verifica que precio sea un número
+    if (isNaN(id)) {
+        return res.status(400).json({ error: 'El ID debe ser un número' });
+    }
+
+    next();
+}
+// ------------------- Middlewares validaciones ------------------- 
 
 
 module.exports = {
@@ -127,5 +152,7 @@ module.exports = {
     getJuegosPorPlataforma,
     desactivarJuego,
     reactivarJuego,
-    mostrarFormularioModificar
+    mostrarFormularioModificar,
+    middlewareValidarJuego,
+    middlewareValidarIdParam
 };
