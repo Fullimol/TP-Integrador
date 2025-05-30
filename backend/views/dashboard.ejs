@@ -23,21 +23,13 @@
     <main>
         <h1 style="text-align: center;">Productos</h1>
 
-        <div class="container-buttons">
-            <p>Filtrar por:</p>
-            <button type="button" id="todos-button" class="button btn-filtrar" data-plataforma="Todos">Todos</button>
-            <button type="button" id="xbox-button" class="button btn-filtrar" data-plataforma="Xbox">Xbox</button>
-            <button type="button" id="play-button" class="button btn-filtrar"
-                data-plataforma="PlayStation">PlayStation</button>
-        </div>
-
         <div class="contenedor-altaproducto">
             <button class="button alta-producto" id="altaproducto-button" type="button">AGREGAR PRODUCTO</button>
         </div>
 
 
 
-        <!-- Los datos de la variable "juegos" se pasan en carpeta juegosRutas.js (router.get('/dashboard', renderJuegos);),la variable juegos debe de ser pasada al renderizar express-->
+        <!--Cuando el URL es juegos/dashboard (como se ve ene la ruta) automaticamente ejecuta mostrarPorPagina.js. Los datos de la variable "juegos" se pasan en mostrarPorPagina de juegosControllers.js -->
         <div id="productos-container">
             <% if (juegos && juegos.length> 0) { %>
                 <% juegos.forEach(juego=> { %>
@@ -73,13 +65,24 @@
                             <% } %>
         </div>
 
+        <!-- Los datos de la variable "paginaActual y totalPaginas" se pasan en mostrarPorPagina de juegosControllers.js -->
+        <div class="contenedor-altaproducto">
+            <% if (paginaActual> 1) { %>
+                <a href="/juegos/dashboard?page=<%= paginaActual - 1 %>">
+                    <button class="button alta-producto">Página anterior</button>
+                </a>
+                <% } %>
+
+                    <% if (paginaActual < totalPaginas) { %>
+                        <a href="/juegos/dashboard?page=<%= paginaActual + 1 %>">
+                            <button class="button alta-producto">Página siguiente</button>
+                        </a>
+                        <% } %>
+        </div>
+
 
         <div class="contenedor-altaproducto">
             <button class="button alta-producto" id="volverlogin-button">Volver al login</button>
-        </div>
-
-        <div class="contenedor-altaproducto">
-            <button class="button alta-producto" id="listadoventas-button">Listado de ventas</button>
         </div>
     </main>
 </body>
