@@ -1,4 +1,4 @@
-const { verificarJWT } = require('./jwt');
+const { verificarJWT } = require('../utils/jwt');
 
 //funcion para autenticar el token enviado al momento del login
 function controlDeAccesoJWT(req, res, next) {

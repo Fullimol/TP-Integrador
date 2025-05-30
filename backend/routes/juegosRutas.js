@@ -1,9 +1,9 @@
 const express = require('express');
 const router = express.Router();
 
-const { getJuegos, eliminarJuego, actualizarJuego, agregarJuego, renderJuegos, getJuegosPorPlataforma, desactivarJuego, reactivarJuego, mostrarFormularioModificar, middlewareValidarJuego, middlewareValidarIdParam} = require('../controllers/juegosControllers');
-const { controlDeAccesoJWT } = require('../utils/middleProteccionRutas');
-
+const { getJuegos, eliminarJuego, actualizarJuego, agregarJuego, renderJuegos, getJuegosPorPlataforma, desactivarJuego, reactivarJuego, mostrarFormularioModificar } = require('../controllers/juegosControllers');
+const { controlDeAccesoJWT } = require('../middlewares/middleProteccionRutas');
+const { middlewareValidarJuego, middlewareValidarIdParam } = require ('../middlewares/middleValidacionJuegos');
 
 
 

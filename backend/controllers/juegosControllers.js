@@ -119,7 +119,7 @@ async function mostrarFormularioModificar(req, res) {
 
 
 // ------------------- Middlewares validaciones ------------------- 
-function middlewareValidarJuego(req, res, next) {
+/*function middlewareValidarJuego(req, res, next) {
     const { nombre, plataforma, precio, imagen } = req.body;
 
     //Si la req no cuenta con alguno de los datos, lanza error
@@ -139,7 +139,7 @@ function middlewareValidarIdParam(req, res, next) {
     }
 
     next();
-}
+}*/
 // ------------------- Middlewares validaciones ------------------- 
 
 
@@ -153,6 +153,6 @@ module.exports = {
     desactivarJuego,
     reactivarJuego,
     mostrarFormularioModificar,
-    middlewareValidarJuego,
-    middlewareValidarIdParam
+    //middlewareValidarJuego,
+    //middlewareValidarIdParam
 };
