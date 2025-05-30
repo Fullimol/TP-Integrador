@@ -4,11 +4,18 @@ const path = require('path');
 
 require('dotenv').config();
 
+// importacion de cookie-parser para poder parsear la cookie recibida
+const cookieParser = require('cookie-parser');
+
 // cors: sirve para permitir la comunicación entre el frontend y el backend
 const cors = require('cors');
 app.use(cors({
     origin: '*',
+    credentials: true //para permitir cookies
 }));
+
+// Middleware para parsear cookies
+app.use(cookieParser());
 
 
 // configuro el EJS como motor de vistas

@@ -33,7 +33,7 @@ async function loginUsuario(req, res) {
       httpOnly: true, //para que no pueda ser leido por JS del cliente
       secure: false, //cambiar a true en produccion con HTTPS
       sameSite: 'Lax', 
-      maxAge: 10 * 60 * 1000 //duracion de la cookie: 10 min
+      maxAge: 30 * 1000 // duracion cookie 30seg
     });
 
     //redirigir al dashboard luego del login exitoso
