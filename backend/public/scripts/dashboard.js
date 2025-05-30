@@ -70,9 +70,12 @@ function activarBotonesDeJuegos() {
         });
     });
 }
+
 activarBotonesDeJuegos();
 
 /* FUNCIÓN BOTÓN VOLVER LOGIN */
-document.getElementById("volverlogin-button").addEventListener("click", () => {
-    window.location.href = '/usuarios/login';
+document.getElementById("volverlogin-button").addEventListener("click", async () => {
+    //al hacer click, hago una peticion http al servidor de la ruta '/usuarios/logout'
+    await fetch('/usuarios/logout'); // llamo al logout para borrar la cookie
+    window.location.href = '/usuarios/login'; //una vez que la peticion logout termina, redirijo a '/usuarios/login' y muestro esta ruta en navegador
 });
