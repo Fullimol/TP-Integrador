@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const { getJuegos, eliminarJuego, actualizarJuego, agregarJuego, renderJuegos, getJuegosPorPlataforma, desactivarJuego, reactivarJuego, mostrarFormularioModificar} = require('../controllers/juegosControllers');
+const { getJuegos, eliminarJuego, actualizarJuego, agregarJuego, renderJuegos, getJuegosPorPlataforma, desactivarJuego, reactivarJuego, mostrarFormularioModificar, middlewareValidarIdParam, middlewareValidarJuego} = require('../controllers/juegosControllers');
 
 
 
@@ -10,14 +10,14 @@ const { getJuegos, eliminarJuego, actualizarJuego, agregarJuego, renderJuegos, g
 router.get('/get', getJuegos);
 
 // Eliminar un juego por id
-router.delete('/delete/:id', eliminarJuego);
+/* router.delete('/delete/:id', eliminarJuego); De momento, sin uso */
 
 //actualizar un juego por id
 router.get('/modificar-producto/:id', mostrarFormularioModificar);
-router.post('/modificar-producto/:id', actualizarJuego);
+router.post('/modificar-producto/:id', middlewareValidarIdParam, middlewareValidarJuego, actualizarJuego);
 
-//agregar un juego nuevo (definición de ruta en servidor express para manejar solicitudes tipo post, la función que se pasa como parametro es para saber que hacer con los datos)
-router.post('/add', agregarJuego);
+//agregar un nuevo juego (definición de ruta en servidor express para manejar solicitudes tipo post, la función que se pasa como parametro es para saber que hacer con los datos)
+router.post('/add', middlewareValidarJuego, agregarJuego);
 
 // Ruta para mostrar la vista con los juegos
 router.get('/dashboard', renderJuegos);
@@ -26,10 +26,10 @@ router.get('/dashboard', renderJuegos);
 router.get('/filtrar', getJuegosPorPlataforma);
 
 //Para desactivar juegos
-router.put('/desactivar/:id', desactivarJuego);
+router.put('/desactivar/:id', middlewareValidarIdParam, desactivarJuego);
 
 //Para activar juegos
-router.put('/reactivar/:id', reactivarJuego);
+router.put('/reactivar/:id', middlewareValidarIdParam, reactivarJuego);
 
 
 
