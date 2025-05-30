@@ -9,7 +9,7 @@ const { middlewareValidarJuego, middlewareValidarIdParam } = require ('../middle
 
 //            LOGICA:
 //obtener todos los juegos
-router.get('/get', controlDeAccesoJWT, getJuegos);
+router.get('/get', getJuegos);
 
 // Eliminar un juego por id
 router.delete('/delete/:id', controlDeAccesoJWT, eliminarJuego);
