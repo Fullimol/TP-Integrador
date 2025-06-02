@@ -30,6 +30,9 @@ app.use(express.static('public'));
 // Permitir el acceso a archivos estáticos del frontend (CSS, imágenes, JS)
 app.use('/frontend', express.static(path.join(__dirname, '../frontend')));
 
+// Servir archivos estáticos
+app.use(express.static(path.join(__dirname, 'public')));
+
 // Rutas
 const juegosRutas = require('./routes/juegosRutas');
 app.use('/juegos', juegosRutas); // incluye rutas de vistas y lógica relacionada

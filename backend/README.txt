@@ -26,21 +26,21 @@ CREATE TABLE IF NOT EXISTS juegos (
 
 
 INSERT INTO juegos (nombre, plataforma, precio, imagen, disponible) VALUES
-('God of War Ragnarök', 'Playstation', 69.99, 'https://juegosdigitalesargentina.com/files/images/productos/1655484530-god-of-war-ragnarok-ps5-pre-orden-0.jpg', true),
-('Ratchet & Clank', 'Playstation', 49.99, 'https://juegosdigitalesargentina.com/files/images/productos/1624750215-ratchet-clank-una-dimension-aparte-ps5.jpg', true),
-('Horizon Forbidden West', 'Playstation', 59.99, 'https://juegosdigitalesargentina.com/files/images/productos/1631120527-horizon-forbidden-west-ps5-pre-orden.jpg', true),
-('Halo Infinite', 'Xbox', 59.99, 'https://juegosdigitalesargentina.com/files/images/productos/1644613688-halo-infinite-xbox-series-xs.jpg', true),
-('Forza Horizon 5', 'Xbox', 49.99, 'https://juegosdigitalesargentina.com/files/images/productos/1658270695-forza-horizon-5-xbox-series-xs-0.jpg', true),
-('Gears 5', 'Xbox', 39.99, 'https://juegosdigitalesargentina.com/files/images/productos/1723144620-gears-5-game-of-the-year-edition-xbox-series-xs-0.webp', true),
-('The Last of Us Part II', 'Playstation', 39.99, 'https://juegosdigitalesargentina.com/files/images/productos/1623456225-the-last-of-us-part-ii-ps5.jpg', true),
-('Forza MotorSport', 'Xbox', 29.99, 'https://juegosdigitalesargentina.com/files/images/productos/1673911737-forza-motorsport-xbox-series-xs-pre-orden-0.jpg', true),
-('Bioshock', 'Playstation', 59.99, 'https://juegosdigitalesargentina.com/files/images/productos/1649288377-bioshock-the-collection-xbox-series-xs-0.jpg', true),
-('Star Wars', 'Xbox', 59.99, 'https://juegosdigitalesargentina.com/files/images/productos/1651789450-star-wars-jedi-fallen-order-xbox-series-xs-0.jpg', true),
-('The Witcher 3', 'Xbox', 29.99, 'https://juegosdigitalesargentina.com/files/images/productos/1651787088-the-witcher-3-wild-hunt-complete-edition-xbox-series-xs-0.jpg', true),
-('DOOM', 'Xbox', 59.99, 'https://juegosdigitalesargentina.com/files/images/productos/1737753783-doom-the-dark-ages-xbox-series-xs-pre-orden-0.webp', true),
-('Street Fighter 6', 'Playstation', 59.99, 'https://juegosdigitalesargentina.com/files/images/productos/1685745024-street-fighter-vi-ps5-0.jpg', true),
-('GTA VI', 'Playstation', 159.99, 'https://juegosdigitalesargentina.com/files/images/productos/1746638760-grand-theft-auto-vi-ps5-pre-orden-0.webp', true),
-('Crash Racing', 'Playstation', 19.99, 'https://juegosdigitalesargentina.com/files/images/productos/1624656741-crash-team-racing-nitro-fueled-ps5.jpg', true);
+('God of War Ragnarök', 'Playstation', 69.99, 'http://localhost:3000/imgs/gow.jpg', true),
+('Ratchet & Clank', 'Playstation', 49.99, 'http://localhost:3000/imgs/ratchet.jpg', true),
+('Horizon Forbidden West', 'Playstation', 59.99, 'http://localhost:3000/imgs/horizon.jpg', true),
+('Halo Infinite', 'Xbox', 59.99, 'http://localhost:3000/imgs/halo.jpg', true),
+('Forza Horizon 5', 'Xbox', 49.99, 'http://localhost:3000/imgs/forza.jpg', true),
+('Gears 5', 'Xbox', 39.99, 'http://localhost:3000/imgs/gears.jpg', true),
+('The Last of Us Part II', 'Playstation', 39.99, 'http://localhost:3000/imgs/ofus.jpg', true),
+('Forza MotorSport', 'Xbox', 29.99, 'http://localhost:3000/imgs/forzamotor.jpg', true),
+('Bioshock', 'Playstation', 59.99, 'http://localhost:3000/imgs/bioshock.jpg', true),
+('Star Wars', 'Xbox', 59.99, 'http://localhost:3000/imgs/jedi.jpg', true),
+('The Witcher 3', 'Xbox', 29.99, 'http://localhost:3000/imgs/witcher.jpg', true),
+('DOOM', 'Xbox', 59.99, 'http://localhost:3000/imgs/doom.jpg', true),
+('Street Fighter 6', 'Playstation', 59.99, 'http://localhost:3000/imgs/street.jpg', true),
+('GTA VI', 'Playstation', 159.99, 'http://localhost:3000/imgs/gta.jpg', true),
+('Crash Racing', 'Playstation', 19.99, 'http://localhost:3000/imgs/ctr.jpg', true);
 
 
 CREATE TABLE IF NOT EXISTS usuarios (
