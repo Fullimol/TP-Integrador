@@ -11,9 +11,6 @@ const { middlewareValidarIdParam } = require ('../middlewares/middleValidacionJu
 // obtener juegos
 router.get('/get', getJuegos);
 
-router.get('/get', getJuegos);
-
-
 // Eliminar un juego por id
 router.delete('/delete/:id', controlDeAccesoJWT, eliminarJuego);
 
