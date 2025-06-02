@@ -8,6 +8,7 @@ function activarBotonesDeJuegos() {
 
 
     // Botón Modificar
+    //Cuando se apreta el botón, se va la URL `/juegos/modificar-producto/númeroDeID` y se ejecuta mostrarFormularioModificar
     document.querySelectorAll('.editar-button').forEach(btn => {
         btn.addEventListener('click', () => {
             const id = btn.dataset.id;

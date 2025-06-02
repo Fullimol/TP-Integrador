@@ -1,6 +1,6 @@
 // aca va las funciones get, post, delete y put
 
-const { selectJuegos, deleteJuego, actualizar, agregar, selectJuegosPorPlataforma, actualizarDisponibilidad, obtenerPorId, obtenerJuegosPaginados, contarTotalJuegos } = require('../models/juegosModels');
+const { selectJuegos, deleteJuego, actualizar, agregar, actualizarDisponibilidad, obtenerPorId, obtenerJuegosPaginados, contarTotalJuegos } = require('../models/juegosModels');
 
 //obtener todos los juegos de la base de datos:
 async function getJuegos(req, res) {
@@ -34,7 +34,7 @@ async function eliminarJuego(req, res) {
 //actualizar un juego segun si id:
 async function actualizarJuego(req, res) {
     try {
-        const { id } = req.params;
+        const { id } = req.params; //Se obtiene el ID del URL
         const { nombre, plataforma, precio, imagen, disponible } = req.body;
         await actualizar(id, nombre, plataforma, precio, imagen, disponible);
         res.redirect('/juegos/dashboard');
@@ -57,28 +57,6 @@ async function agregarJuego(req, res) {
 }
 
 // ------------------- Función para pasar los juegos a EJS ------------------- 
-async function renderJuegos(req, res) {
-    try {
-        const juegos = await selectJuegos(); //Obtener los juegos desde la BD
-        res.render('dashboard', { juegos }); // Se pasa los juegos a EJS
-    } catch (err) {
-        res.status(500).send('Error al renderizar la vista');
-    }
-}
-
-//Función para mostrar juegos según plataforma
-async function getJuegosPorPlataforma(req, res) {
-    const { plataforma } = req.query;
-
-    try {
-        const juegos = await selectJuegosPorPlataforma(plataforma);
-        res.json(juegos);
-    } catch (err) {
-        console.error(err);
-        res.status(500).json({ error: 'Error al filtrar los juegos' });
-    }
-}
-
 //Función para desactivar juego
 async function desactivarJuego(req, res) {
     const { id } = req.params;
@@ -91,7 +69,7 @@ async function desactivarJuego(req, res) {
     }
 }
 
-//Función para actiar juego
+//Función para activar juego
 async function reactivarJuego(req, res) {
     const { id } = req.params;
     try {
@@ -106,9 +84,9 @@ async function reactivarJuego(req, res) {
 //Función para mostrar el formulario de modificación
 async function mostrarFormularioModificar(req, res) {
     try {
-        const { id } = req.params;
+        const { id } = req.params; //Extrae el ID de la URL
         const juego = await obtenerPorId(id);
-        res.render('modificar-producto', { juego });
+        res.render('modificar-producto', { juego });//Renderiza (muestra página HTML construida en EJS) la vista modificar-producto.ejs y se le pasa el objeto juego, luego a partir de este en la plantilla se le van pasando todos los datos
     } catch (error) {
         res.status(500).send('Error al obtener el juego para modificar.');
     }
@@ -116,11 +94,11 @@ async function mostrarFormularioModificar(req, res) {
 
 //Función para mostrar juegos por página
 async function mostrarPorPagina(req, res) {
-    const porPagina = 6;
-    const pagina = parseInt(req.query.page) || 1;
-    const offset = (pagina - 1) * porPagina;
+    const porPagina = 6; //La cantidad de juegos que queremos mostrar
+    const pagina = parseInt(req.query.page) || 1; //Devuelve la página actual, por defecto es 1
+    const offset = (pagina - 1) * porPagina; //Cantidad de juegos a saltarse antes de empezar a contar, por defecto es 0
 
-    const juegos = await obtenerJuegosPaginados(porPagina, offset);
+    const juegos = await obtenerJuegosPaginados(porPagina, offset); 
     const totalJuegos = await contarTotalJuegos();
     const totalPaginas = Math.ceil(totalJuegos / porPagina);
 
@@ -140,8 +118,6 @@ module.exports = {
     eliminarJuego,
     actualizarJuego,
     agregarJuego,
-    renderJuegos,
-    getJuegosPorPlataforma,
     desactivarJuego,
     reactivarJuego,
     mostrarFormularioModificar,

@@ -29,7 +29,7 @@
 
 
 
-        <!--Cuando el URL es juegos/dashboard (como se ve ene la ruta) automaticamente ejecuta mostrarPorPagina.js. Los datos de la variable "juegos" se pasan en mostrarPorPagina de juegosControllers.js -->
+        <!--Cuando el URL es juegos/dashboard (como se ve en la ruta) automaticamente ejecuta mostrarPorPagina.js (siempre que se ingresa a un URL ya establecido en la ruta se ejecuta el metodo GET). Los datos de la variable "juegos" se pasan en mostrarPorPagina de juegosControllers.js -->
         <div id="productos-container">
             <% if (juegos && juegos.length> 0) { %>
                 <% juegos.forEach(juego=> { %>
