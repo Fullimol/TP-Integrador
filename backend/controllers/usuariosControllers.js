@@ -24,11 +24,11 @@ async function loginUsuario(req, res) {
       return res.render('login', { error: 'Usuario o contraseña incorrectos' });
     }
 
-    //Login exitoso: generacion de token
+    //Login exitoso: generacion de token de acceso que contiene la información códificada, en este caso el id y el mail
     const payload = {id: usuario.id, email: usuario.email};
     const token = generarJWT(payload);
 
-    //guardo token en cookie
+    //guardo token en cookie(info que el servidor guarda en el navegador del usuario)
     res.cookie('token', token, {
       httpOnly: true, //para que no pueda ser leido por JS del cliente
       secure: false, //cambiar a true en produccion con HTTPS

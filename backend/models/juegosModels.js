@@ -71,15 +71,18 @@ async function obtenerPorId(id) {
     return result[0]; // retorna el 1er y unico resultado
 }
 
+//LIMIT: Cuantos juegos traer / OFFSET: Cuantos juegos saltarte antes de empezar a contar
 async function obtenerJuegosPaginados(limit, offset) {
     const db = await conectar();
     const [juegos] = await db.query('SELECT * FROM juegos LIMIT ? OFFSET ?', [limit, offset]);
+    await db.end();
     return juegos;
 }
 
 const contarTotalJuegos = async () => {
     const db = await conectar();
     const [result] = await db.query('SELECT COUNT(*) AS total FROM juegos');
+    await db.end();
     return result[0].total;
 };
 
