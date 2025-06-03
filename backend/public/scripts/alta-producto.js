@@ -1,14 +1,51 @@
-/* Función para volver al dashboard al presionar el botón "VOLVER" */
-document.getElementById("volver-button").addEventListener("click", () => {
-    window.location.href = '/juegos/dashboard';
-})
+const opcionImagen = document.getElementById("seleccion-imagen")
+const inputUrl = document.getElementById("input-urlimg");
+const formArchivo = document.getElementById("formulario");
+
+//Función para camviar metodo de carga de imagen 
+function actualizarVisibilidad() {
+    if (opcionImagen.value === "URL") {
+        inputUrl.classList.remove("hidden");
+        formArchivo.classList.add("hidden");
+    } else {
+        formArchivo.classList.remove("hidden");
+        inputUrl.classList.add("hidden");
+    }
+}
+
+// Por defecto selecciona la opción URL dentro de las opciones de carga de imagen
+opcionImagen.addEventListener("change", actualizarVisibilidad);
+
+//Función para subir imagen
+async function uploadImagen() {
+    const form = formulario;
+    const formData = new FormData(form); // Captura todos los campos automáticamente
+
+    try {
+        const respuesta = await fetch('/upload', {
+            method: 'POST',
+            body: formData, // fetch automáticamente usa multipart/form-data
+        });
+
+        const texto = await respuesta.text();
+        alert('Respuesta del servidor: ' + texto);
+        return "http://localhost:3000/imgs/" + texto;
+    } catch (err) {
+        console.error('Error al enviar:', err);
+    }
+}
 
 /* Función para agregar elemento */
 document.getElementById("agregar-button").addEventListener("click", async () => {
     const nombre = document.getElementById("input-nombre").value;
     const plataforma = document.getElementById("input-plataforma").value;
     const precio = document.getElementById("input-precio").value;
-    const imagen = document.getElementById("input-urlimg").value;
+    let imagen = ""
+    if(opcionImagen.value == "URL"){
+        imagen = document.getElementById("input-urlimg").value
+    }else{
+        imagen = await uploadImagen();
+    }
 
     /* Creación de objeto juego con los valores obtenidos */
     const juego = { nombre, plataforma, precio, imagen };
@@ -44,3 +81,11 @@ document.getElementById("agregar-button").addEventListener("click", async () => 
         alert('Error al agregar el producto.');
     }
 });
+
+/* Función para volver al dashboard al presionar el botón "VOLVER" */
+document.getElementById("volver-button").addEventListener("click", () => {
+    window.location.href = '/juegos/dashboard';
+})
+
+// Ejecuta la función actualizarVisibilidad al cargar la página para poner por defecto la opción de URL al cargar la vista
+document.addEventListener("DOMContentLoaded", actualizarVisibilidad);

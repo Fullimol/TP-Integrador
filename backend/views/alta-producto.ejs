@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="/frontend/styles/global.css">
-    <link rel="stylesheet" href="/styles/altaymod-producto.css">
+    <link rel="stylesheet" href="/styles/alta-producto.css">
 </head>
 
 <body>
@@ -20,7 +20,7 @@
         <h1>G4ME $T0RE - Alta Producto</h1>
     </header>
 
-    <form>
+    <main>
         <h1>Ingresar datos de nuevo producto</h1>
 
         <label>Nombre:</label>
@@ -35,12 +35,20 @@
         <label>Precio:</label>
         <input type="text" name="" id="input-precio">
 
-        <label>URL de imagen:</label>
-        <input type="text" name="" id="input-urlimg">
+        <label>Imagen:</label>
+        <select id="seleccion-imagen">
+            <option value="URL">URL</option>
+            <option value="Subir">Subir</option>
+        </select>
+        <input class="hidden" type="text" name="" id="input-urlimg">
+        <form class="hidden" action="/upload" method="POST" enctype="multipart/form-data" id="formulario">
+            <input type="file" name="archivo" required />
+        </form>
 
         <button class="aceptar-button" id="agregar-button" type="button">Agregar</button>
         <button id="volver-button" type="button">Volver</button>
-    </form>
+    </main>
+
 </body>
 <script src="/scripts/alta-producto.js"></script>
 

@@ -1,4 +1,5 @@
 const express = require('express');
+const multer = require('multer');//npm install multer
 const app = express();
 const path = require('path');
 
@@ -43,6 +44,28 @@ app.use('/usuarios', usuariosRutas);
 const ventasRutas = require('./routes/ventasRutas');
 app.use('/ventas', ventasRutas);
 
+/*------------------- MULTER ------------------*/
+
+// Configuración del almacenamiento con Multer
+const storage = multer.diskStorage({
+    destination: (req, file, cb) => {
+        cb(null, path.join(__dirname, 'public', 'imgs')); // Para redirigir a la carpeta donde se guardan los archivos
+    },
+    filename: (req, file, cb) => {
+        const uniqueName = Date.now() + '-' + file.originalname;
+        cb(null, uniqueName);
+    }
+});
+
+const upload = multer({ storage });
+
+// Ruta para subir un archivo (campo 'archivo' en el form)
+app.post('/upload', upload.single('archivo'), (req, res) => {
+    if (!req.file) return res.status(400).send('No se subió ningún archivo');
+    res.send(req.file.filename);
+});
+
+/*------------------- MULTER ------------------*/
 
 // Escuchar
 app.listen(3000, () => console.log('Servidor escuchando en http://localhost:3000'));

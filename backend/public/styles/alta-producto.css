@@ -1,0 +1,72 @@
+main {
+    max-width: 500px;
+    margin: 40px auto;
+    padding: 20px 30px;
+    background-color: #f8f9fa;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    font-family: sans-serif;
+}
+
+main h1 {
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 22px;
+    color: #333;
+}
+
+main label {
+    display: block;
+    margin-top: 15px;
+    font-weight: bold;
+    color: #444;
+}
+
+main input,
+main select {
+    width: 100%;
+    padding: 8px 10px;
+    margin-top: 5px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    font-size: 14px;
+    box-sizing: border-box;
+}
+
+main input:focus,
+main select:focus {
+    border-color: #007bff;
+    outline: none;
+}
+
+main button {
+    padding: 10px;
+    width: 48%;
+    margin-top: 20px;
+    font-size: 14px;
+    border: none;
+    border-radius: 6px;
+    color: white;
+    cursor: pointer;
+}
+
+.hidden {
+    display: none;
+}
+
+.aceptar-button {
+    background-color: #28a745;
+    margin-right: 4%;
+}
+
+.aceptar-button:hover {
+    background-color: #218838;
+}
+
+#volver-button {
+    background-color: #6c757d;
+}
+
+#volver-button:hover {
+    background-color: #5a6268;
+}
