@@ -22,8 +22,11 @@
     </header>
 
 
-    <form action="/juegos/modificar-producto/<%= juego.id %>" method="POST">
+    <main>
         <h1>Modificar datos de producto</h1>
+
+
+        <input type="hidden" name="id" id="input-id" value="<%= juego.id %>">
 
         <label>Nombre:</label>
         <input type="text" name="nombre" id="input-nombre" value="<%= juego.nombre %>">
@@ -37,21 +40,25 @@
         <label>Precio:</label>
         <input type="text" name="precio" id="input-precio" value="<%= juego.precio %>">
 
-        <label>URL de imagen:</label>
-        <input type="text" name="imagen" id="input-urlimg" value="<%= juego.imagen %>">
+        <label>Imagen:</label>
+        <select id="seleccion-imagen">
+            <option value="URL">URL</option>
+            <option value="Subir">Subir</option>
+        </select>
+        <input class="hidden" type="text" name="imagen" id="input-urlimg" value="<%= juego.imagen %>">
+        <form class="hidden" action="/upload" method="POST" enctype="multipart/form-data" id="formulario">
+            <input type="file" name="archivo" required />
+        </form>
 
-        <input type="hidden" name="disponible" value="<%= juego.disponible %>">
 
-        <button class="aceptar-button" type="submit">Modificar</button>
+        <input type="hidden" name="disponible" id="input-disponible" value="<%= juego.disponible %>">
+
+        <button class="aceptar-button" type="button" id="modificar-button">Modificar</button>
         <button id="volver-button" type="button">Volver</button>
-    </form>
+    </main>
+
 </body>
 
-<script>
-    // Volver al dashboard
-    document.getElementById("volver-button").addEventListener("click", () => {
-        window.location.href = '/juegos/dashboard';
-    });
-</script>
+<script src="/scripts/modificar-producto.js"></script>
 
 </html>
