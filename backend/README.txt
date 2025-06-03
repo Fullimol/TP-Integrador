@@ -8,6 +8,7 @@ npm install ejs
 npm install dotenv
 npm install jsonwebtoken
 npm install cookie-parser
+npm install bcrypt
 
 Usar en consola sobre la carpeta backend "nodemon api.js" para levantar servidor.
 
@@ -50,7 +51,7 @@ CREATE TABLE IF NOT EXISTS usuarios (
 );
 
 INSERT INTO usuarios (email, password) VALUES
-('admin@gamestore.com', '1234');
+('admin@gamestore.com', '$2b$10$zyFszxQH6b0i/bE72HTb0.CiMc2YbLG772W7d9RSlMdIaBXO73Vsa');
 
 
 
