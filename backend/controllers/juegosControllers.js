@@ -34,8 +34,7 @@ async function eliminarJuego(req, res) {
 //actualizar un juego segun si id:
 async function actualizarJuego(req, res) {
     try {
-        const { id } = req.params; //Se obtiene el ID del URL
-        const { nombre, plataforma, precio, imagen, disponible } = req.body;
+        const { id, nombre, plataforma, precio, imagen, disponible } = req.body;
         await actualizar(id, nombre, plataforma, precio, imagen, disponible);
         res.redirect('/juegos/dashboard');
     } catch (err) {

@@ -2,7 +2,7 @@ const opcionImagen = document.getElementById("seleccion-imagen")
 const inputUrl = document.getElementById("input-urlimg");
 const formArchivo = document.getElementById("formulario");
 
-//Función para camviar metodo de carga de imagen 
+//Función para cambiar metodo de carga de imagen 
 function actualizarVisibilidad() {
     if (opcionImagen.value === "URL") {
         inputUrl.classList.remove("hidden");
@@ -41,6 +41,8 @@ document.getElementById("agregar-button").addEventListener("click", async () => 
     const plataforma = document.getElementById("input-plataforma").value;
     const precio = document.getElementById("input-precio").value;
     let imagen = ""
+
+    //Validación para tomar los datos de la URL o del archivo subido dependiendo de la opción seleccionada
     if(opcionImagen.value == "URL"){
         imagen = document.getElementById("input-urlimg").value
     }else{
