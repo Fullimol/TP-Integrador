@@ -1,5 +1,7 @@
-const {getUsuarioPorEmail, selectUsuarios} = require("../models/usuariosModels");
+const {getUsuarioPorEmail, selectUsuarios, agregarUsuario } = require("../models/usuariosModels");
 const { generarJWT } = require('../utils/jwt');
+const bcrypt = require('bcrypt');
+
 
 
 // aca tengo que hacer la función para traer los usuarios
@@ -20,8 +22,17 @@ async function loginUsuario(req, res) {
     const usuario = await getUsuarioPorEmail(email); //obtengo el usuario por su email
 
     //Si el usuario no existe o la contraseña no coincide, lanzo error
-    if (!usuario || password !== usuario.password) {
+    /*if (!usuario || password !== usuario.password) {
       return res.render('login', { error: 'Usuario o contraseña incorrectos' });
+    }*/
+
+    if (!usuario) {
+      return res.redirect('/usuarios/login?error=' + encodeURIComponent('Usuario no encontrado'));
+    }
+
+  const coincideContrasenia = await bcrypt.compare(password, usuario.password);
+    if (!coincideContrasenia) {
+      return res.redirect('/usuarios/login?error=' + encodeURIComponent('Contraseña incorrecta'));
     }
 
     //Login exitoso: generacion de token de acceso que contiene la información códificada, en este caso el id y el mail
@@ -57,4 +68,36 @@ function logoutUsuario(req, res) {
   res.redirect('/usuarios/login'); //esta redireccion vá aca por si alguien ingresa al endpoint '/usuarios/logout' directamente
 }
 
-module.exports = { getUsuarios, loginUsuario, logoutUsuario };
+
+//funcion para crear nuevo administrador
+async function crearAdmin(req, res) {
+  try {
+    const { email, password } = req.body;
+
+    if (!email || !password) {
+      return res.status(400).render('alta-admin', { error: 'Complete todos los campos solicitados' });
+    }
+
+    //chequeo si ya hay un usuario creado en la bbdd con ese email
+    const usuarioExiste = await getUsuarioPorEmail(email);
+    if (usuarioExiste) {
+      return res.status(400).render('alta-admin', { error: 'El email ya se encuentra registrado' });
+    }
+    
+    const hashedPassword = await bcrypt.hash(password, 10); //hasheo de contraseña
+    await agregarUsuario(email, hashedPassword); //guardar usuario en BD
+
+    return res.redirect('/juegos/dashboard?success=' + encodeURIComponent('Administrador creado con exito!'));
+  } catch (error) {
+    console.error(error);
+    return res.status(500).render('alta-admin', { error: 'Error al crear el usuario' });
+  }
+  
+}
+
+
+
+
+
+
+module.exports = { getUsuarios, loginUsuario, logoutUsuario, crearAdmin };

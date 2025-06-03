@@ -25,8 +25,14 @@
 
         <div class="contenedor-altaproducto">
             <button class="button alta-producto" id="altaproducto-button" type="button">AGREGAR PRODUCTO</button>
+            <button class="button alta-producto" id="altaadmin-button" type="button">AGREGAR NUEVO ADMIN</button>
         </div>
 
+        <% if (success) { %>
+            <div class="mensaje-exito">
+                <p style="margin: 0;"><%= success %></p>
+            </div>
+        <% } %>
 
 
         <!--Cuando el URL es juegos/dashboard (como se ve en la ruta) automaticamente ejecuta mostrarPorPagina.js (siempre que se ingresa a un URL ya establecido en la ruta se ejecuta el metodo GET). Los datos de la variable "juegos" se pasan en mostrarPorPagina de juegosControllers.js -->

@@ -23,7 +23,15 @@ async function getUsuarioPorEmail(email) {
   return null;
 }
 
+//funcion para inssertar usuario en BD
+async function agregarUsuario(email, password) {
+  const db = await conectar();
+  const qry = 'INSERT INTO usuarios (email, password) VALUES (?, ?)';
+  await db.execute(qry, [email, password]);
+  await db.end();
+}
+
 
 //              **************      FIN TABLA USUARIOS       **************
 
-module.exports = { selectUsuarios, getUsuarioPorEmail };
+module.exports = { selectUsuarios, getUsuarioPorEmail, agregarUsuario };
