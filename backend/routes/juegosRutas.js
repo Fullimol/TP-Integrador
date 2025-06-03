@@ -8,6 +8,8 @@ const { middlewareValidarIdParam } = require ('../middlewares/middleValidacionJu
 
 
 //            LOGICA:
+// obtener juegos
+router.get('/get', getJuegos);
 
 // Eliminar un juego por id
 router.delete('/delete/:id', controlDeAccesoJWT, eliminarJuego);

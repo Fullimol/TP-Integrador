@@ -66,3 +66,22 @@ form button {
 #volver-button:hover {
     background-color: #5a6268;
 }
+
+
+
+/*Botones form alta*/
+.cancelar-button {
+    background-color: #dc3545; 
+    color: white;
+}
+
+.cancelar-button:hover {
+    background-color: #c82333;
+}
+
+.botones-container {
+  display: flex;
+  justify-content: center; /* centra horizontalmente */
+  gap: 15px; /* espacio entre botones */
+  margin-top: 20px; /* separación del contenido arriba */
+}

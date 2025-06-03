@@ -124,11 +124,14 @@ async function mostrarPorPagina(req, res) {
     const totalJuegos = await contarTotalJuegos();
     const totalPaginas = Math.ceil(totalJuegos / porPagina);
 
+     const success = req.query.success || null; //para mostrar mensaje de exito de creacion de usuario
+
     //Se pasan los datos a la vista
     res.render('dashboard', {
         juegos,
         paginaActual: pagina,
-        totalPaginas
+        totalPaginas,
+        success 
     });
 }
 

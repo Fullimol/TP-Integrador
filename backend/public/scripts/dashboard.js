@@ -79,3 +79,8 @@ document.getElementById("volverlogin-button").addEventListener("click", async ()
     await fetch('/usuarios/logout'); // llamo al logout para borrar la cookie
     window.location.href = '/usuarios/login'; //una vez que la peticion logout termina, redirijo a '/usuarios/login' y muestro esta ruta en navegador
 });
+
+/*funcion boton agregar nuevo admin */
+document.getElementById("altaadmin-button").addEventListener("click", () => {
+    window.location.href = '/usuarios/alta-admin';
+});
