@@ -21,11 +21,6 @@ async function loginUsuario(req, res) {
   try {
     const usuario = await getUsuarioPorEmail(email); //obtengo el usuario por su email
 
-    //Si el usuario no existe o la contraseña no coincide, lanzo error
-    /*if (!usuario || password !== usuario.password) {
-      return res.render('login', { error: 'Usuario o contraseña incorrectos' });
-    }*/
-
     if (!usuario) {
       return res.redirect('/usuarios/login?error=' + encodeURIComponent('Usuario no encontrado'));
     }
@@ -81,7 +76,7 @@ async function crearAdmin(req, res) {
     //chequeo si ya hay un usuario creado en la bbdd con ese email
     const usuarioExiste = await getUsuarioPorEmail(email);
     if (usuarioExiste) {
-      return res.status(400).render('alta-admin', { error: 'El email ya se encuentra registrado' });
+      return res.status(400).render('alta-admin', { error: 'El email ya se encuentra registrado. Registre uno nuevo' });
     }
     
     const hashedPassword = await bcrypt.hash(password, 10); //hasheo de contraseña
