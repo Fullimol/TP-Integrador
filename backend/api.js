@@ -57,7 +57,7 @@ const storage = multer.diskStorage({
     }
 });
 
-const upload = multer({ storage }); //Se crea instancia de multer y se le pasa storage para que use dicha configuración para guardar archivos
+const upload = multer({ storage }); //See crea instancia de multer y se le pasa storage para que use dicha configuración para guardar archivos
 
 // Ruta para subir un archivo (campo 'archivo' en el form)
 app.post('/upload', upload.single('archivo'), (req, res) => {
