@@ -51,13 +51,13 @@ const storage = multer.diskStorage({
     destination: (req, file, cb) => {
         cb(null, path.join(__dirname, 'public', 'imgs')); // Para redirigir a la carpeta donde se guardan los archivos
     },
-    filename: (req, file, cb) => {
-        const uniqueName = Date.now() + '-' + file.originalname;
-        cb(null, uniqueName);
+    filename: (req, file, cb) => { //Se ejecuta cada vez que se guarda un archivo
+        const uniqueName = Date.now() + '-' + file.originalname; //Date.now() genera un número único basado en la fecha y hora actual en milisegundos
+        cb(null, uniqueName);//Se llama al callback para pasarle el nombre definitivo del archivo multer
     }
 });
 
-const upload = multer({ storage });
+const upload = multer({ storage }); //Se crea instancia de multer y se le pasa storage para que use dicha configuración para guardar archivos
 
 // Ruta para subir un archivo (campo 'archivo' en el form)
 app.post('/upload', upload.single('archivo'), (req, res) => {

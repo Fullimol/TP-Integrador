@@ -28,7 +28,6 @@ async function uploadImagen() {
         });
 
         const texto = await respuesta.text();
-        alert('Respuesta del servidor: ' + texto);
         return "http://localhost:3000/imgs/" + texto;
     } catch (err) {
         console.error('Error al enviar:', err);

@@ -21,7 +21,7 @@ opcionImagen.addEventListener("change", actualizarVisibilidad);
 //Función para subir imagen
 async function uploadImagen() {
     const form = formulario;
-    const formData = new FormData(form); // Captura todos los campos automáticamente
+    const formData = new FormData(form); // Captura todos los campos automáticamente del formulario
 
     try {
         const respuesta = await fetch('/upload', {
@@ -30,7 +30,6 @@ async function uploadImagen() {
         });
 
         const texto = await respuesta.text();
-        alert('Respuesta del servidor: ' + texto);
         return "http://localhost:3000/imgs/" + texto;
     } catch (err) {
         console.error('Error al enviar:', err);
