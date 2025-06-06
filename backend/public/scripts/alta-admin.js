@@ -10,8 +10,11 @@
       //limpio mensaje de error previo
       errorFront.style.display = 'none';
       errorFront.textContent = '';
-      errorBack.style.display = 'none';
-      errorBack.textContent = '';
+      
+      if (errorBack) {
+        errorBack.style.display = 'none';
+        errorBack.textContent = '';
+      }
 
       //validaciones del lado del front
       //campos vacios
