@@ -1,5 +1,6 @@
     const form = document.getElementById('formAlta');
     const errorFront = document.getElementById('errorFront');
+    const errorBack = document.getElementById('errorBack');
 
     form.addEventListener('submit', e => {
       //quito espacios vacios de los campos solicitados
@@ -7,11 +8,12 @@
       const password = form.password.value.trim();
       const confirmPassword = form.confirmPassword.value.trim();
 
-      //limpio mensaje de error previo
-      errorFront.style.display = 'none';
-      errorFront.textContent = '';
-      
-      if (errorBack) {
+      //limpio mensaje de error previo si existe
+      if(errorFront){
+        errorFront.style.display = 'none';
+        errorFront.textContent = '';
+      }
+      if(errorBack){
         errorBack.style.display = 'none';
         errorBack.textContent = '';
       }
