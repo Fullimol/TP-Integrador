@@ -67,10 +67,14 @@ function logoutUsuario(req, res) {
 //funcion para crear nuevo administrador
 async function crearAdmin(req, res) {
   try {
-    const { email, password } = req.body;
+    const { email, password, confirmPassword } = req.body;
 
-    if (!email || !password) {
+    if (!email || !password || !confirmPassword) {
       return res.status(400).render('alta-admin', { error: 'Complete todos los campos solicitados' });
+    }
+
+    if (password !== confirmPassword) {
+      return res.status(400).render('alta-admin', { error: 'Las contraseñas no coinciden' });
     }
 
     //chequeo si ya hay un usuario creado en la bbdd con ese email
