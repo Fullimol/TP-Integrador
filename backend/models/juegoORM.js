@@ -1,4 +1,4 @@
-// Este archivo define el modelo de datos para un juego en la base de datos usando Sequelize ORM.
+// Este archivo define el MODELO de datos para un juego en la base de datos usando Sequelize ORM.
 const { sequelize } = require('../dbORM');
 const { DataTypes } = require('sequelize');
 

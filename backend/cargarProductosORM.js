@@ -3,7 +3,7 @@
 */
 
 const { sequelize } = require('./dbORM.js');
-const { Juego } = require('./models/juegoORM.js');
+const Juego = require('./models/juegoORM.js');
 
 async function insertarJuegos() {
     try {
