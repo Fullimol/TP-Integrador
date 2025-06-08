@@ -28,7 +28,7 @@ function mostrarEnCarrito() {
                 <div class="card-info">
                 <h3>${producto.nombre}</h3>
                 <p>Plataforma: ${producto.plataforma}</p>
-                <p>Precio: $${producto.precio.toFixed(2)}</p>
+                <p>Precio: $${Number(producto.precio).toFixed(2)}</p>
                 ${enCarrito ? `<p>Cantidad en carrito: ${carrito.find(p => p.id === producto.id).cantidad}</p>` : ''}
                 </div>
                 <div class="card-buttons">

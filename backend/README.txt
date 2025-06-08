@@ -14,7 +14,7 @@ Usar en consola sobre la carpeta backend "nodemon api.js" para levantar servidor
 
 
 
-******* COMANDO PARA PROBAR EL SQL *******
+******* COMANDO PARA PROBAR EL SQL *******    ⚠️⚠️ AHORA SUBIR A LA BD LOS JUEGOS USANDO EL ARCHIVO "cargarProductosORM.js" ⚠️⚠️
 
 CREATE TABLE IF NOT EXISTS juegos (
   id INT AUTO_INCREMENT PRIMARY KEY,
@@ -24,7 +24,6 @@ CREATE TABLE IF NOT EXISTS juegos (
   imagen TEXT,
   disponible BOOLEAN
 );
-
 
 INSERT INTO juegos (nombre, plataforma, precio, imagen, disponible) VALUES
 ('God of War Ragnarök', 'Playstation', 69.99, 'http://localhost:3000/imgs/gow.jpg', true),

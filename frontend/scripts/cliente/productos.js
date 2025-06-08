@@ -21,7 +21,7 @@ function obtenerProductos() {
         .then(response => response.json())
         .then(data => {
             // Filtrar productos disponibles
-            productos = data.filter(p => p.disponible !== 0);
+            productos = data.filter(p => p.disponible !== false);
 
             carrito = JSON.parse(localStorage.getItem('carrito')) || [];
             mostrarProductosPaginados();
@@ -74,7 +74,7 @@ function mostrarProductos(productos) {
             <div class="card-content">
               <h3>${producto.nombre}</h3>
               <p>Plataforma: ${producto.plataforma}</p>
-              <p>Precio: $${producto.precio.toFixed(2)}</p>
+              <p>Precio: $${Number(producto.precio).toFixed(2)}</p>
 
               <button class="agregar-button" data-id="${producto.id}">
                 ${enCarrito ? 'Agregar otro más' : 'Agregar al carrito'}
