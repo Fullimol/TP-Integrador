@@ -2,22 +2,36 @@
 
 const { selectJuegos, deleteJuego, actualizar, agregar, actualizarDisponibilidad, obtenerPorId, obtenerJuegosPaginados, contarTotalJuegos } = require('../models/juegosModels');
 
-//obtener todos los juegos de la base de datos:
-async function getJuegos(req, res) {
+//obtener todos los juegos de la base de datos:  ⚠️(no se usa porque ahora se traen desde la base de datos con ORM)⚠️
+// async function getJuegos(req, res) {
+//     try {
+//         const juegos = await selectJuegos();
+
+//         // Convertir el campo precio a número (por si viene como string) porque en la bd es decimal y lo pasa solo a string.
+//         const juegosConvertidos = juegos.map(j => ({
+//             ...j,
+//             precio: Number(j.precio)
+//         }));
+
+//         res.json(juegosConvertidos);
+//     } catch (err) {
+//         res.status(500).json({ error: 'Error al obtener los juegos' });
+//     }
+// }
+
+// ------------------- ORM ------------------- 
+const Juego = require("../models/juegoORM.js");
+
+const getJuegos = async (req, res) => {
     try {
-        const juegos = await selectJuegos();
-
-        // Convertir el campo precio a número (por si viene como string) porque en la bd es decimal y lo pasa solo a string.
-        const juegosConvertidos = juegos.map(j => ({
-            ...j,
-            precio: Number(j.precio)
-        }));
-
-        res.json(juegosConvertidos);
-    } catch (err) {
-        res.status(500).json({ error: 'Error al obtener los juegos' });
+        const juegos = await Juego.findAll();
+        res.status(200).json(juegos);
+    } catch (error) {
+        console.error("Error en getJuegos:", error);
+        res.status(500).json({ error: "Error en la consulta" });
     }
-}
+};
+// ------------------- FIN ORM ------------------- 
 
 
 // elimino juego segun si id pasado por la url
@@ -97,22 +111,23 @@ async function mostrarPorPagina(req, res) {
     const pagina = parseInt(req.query.page) || 1; //Devuelve la página actual, por defecto es 1
     const offset = (pagina - 1) * porPagina; //Cantidad de juegos a saltarse antes de empezar a contar, por defecto es 0
 
-    const juegos = await obtenerJuegosPaginados(porPagina, offset); 
+    const juegos = await obtenerJuegosPaginados(porPagina, offset);
     const totalJuegos = await contarTotalJuegos();
     const totalPaginas = Math.ceil(totalJuegos / porPagina);
 
-     const success = req.query.success || null; //para mostrar mensaje de exito de creacion de usuario
+    const success = req.query.success || null; //para mostrar mensaje de exito de creacion de usuario
 
     //Se pasan los datos a la vista
     res.render('dashboard', {
         juegos,
         paginaActual: pagina,
         totalPaginas,
-        success 
+        success
     });
 }
 
-// ------------------- Función para pasar los juegos a EJS ------------------- 
+// ------------------- FIN Función para pasar los juegos a EJS ------------------- 
+
 
 
 module.exports = {
