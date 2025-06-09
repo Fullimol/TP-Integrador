@@ -117,12 +117,16 @@ async function mostrarPorPagina(req, res) {
 
     const success = req.query.success || null; //para mostrar mensaje de exito de creacion de usuario
 
+    const emailCompleto = req.usuario?.email || ''; //atrapo el email del usuario logueado para mostrarlo en el dashboard mientras navego
+    const usuario = emailCompleto.split('@')[0];
+
     //Se pasan los datos a la vista
     res.render('dashboard', {
         juegos,
         paginaActual: pagina,
         totalPaginas,
-        success
+        success,
+        usuario
     });
 }
 

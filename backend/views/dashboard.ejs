@@ -18,6 +18,14 @@
     <header>
         <img src="/frontend/assets/imgs/gameLogo.jpg" alt="Logo">
         <h1>G4ME $T0RE - Dashboard Administrador</h1>
+        
+        <%if(usuario){%>
+            <div class="usuario-login">
+                En linea: <%= usuario %>
+            </div>
+            <%}
+        %>
+
     </header>
 
     <main>
