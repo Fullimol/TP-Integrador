@@ -135,9 +135,9 @@ function filtrarProductos(filtro) {
 
 // guardar carrito en localStorage
 function agregarAlCarrito(id) {
-    const index = carrito.findIndex(p => p.id === id);
+    const index = carrito.findIndex(p => p.id === id); //Si el producto NO ESTA el resultado es -1
 
-    if (index !== -1) {
+    if (index !== -1) { //Si el producto ya esta en el carrito se le suma 1 a la canidad de ese producto
         carrito[index].cantidad += 1;
     } else {
         const producto = productos.find(p => p.id === id);

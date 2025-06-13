@@ -50,7 +50,7 @@ async function actualizarJuego(req, res) {
     try {
         const { id, nombre, plataforma, precio, imagen, disponible } = req.body;
         await actualizar(id, nombre, plataforma, precio, imagen, disponible);
-        res.redirect('/juegos/dashboard');
+        res.status(200).json({ mensaje: 'Juego actualizado con éxito' });
     } catch (err) {
         res.status(500).json({ error: 'Error al actualizar el juego' });
         console.log(err);
@@ -74,7 +74,7 @@ async function agregarJuego(req, res) {
 async function desactivarJuego(req, res) {
     const { id } = req.params;
     try {
-        await actualizarDisponibilidad(id, 0); //Se cambia a 0 para desativar
+        await actualizarDisponibilidad(id, 0); //Se cambia a 0 para desactivar
         res.json({ message: 'Juego desactivado correctamente.' });
     } catch (err) {
         console.error(err);
@@ -108,12 +108,12 @@ async function mostrarFormularioModificar(req, res) {
 //Función para mostrar juegos por página
 async function mostrarPorPagina(req, res) {
     const porPagina = 6; //La cantidad de juegos que queremos mostrar
-    const pagina = parseInt(req.query.page) || 1; //Devuelve la página actual, por defecto es 1
+    const pagina = parseInt(req.query.page) || 1; //Devuelve la página actual, por defecto es 1 (obtiene el número de page que esta en la URL, luego del "?". ejemplo dashboard?page=2)
     const offset = (pagina - 1) * porPagina; //Cantidad de juegos a saltarse antes de empezar a contar, por defecto es 0
 
     const juegos = await obtenerJuegosPaginados(porPagina, offset);
     const totalJuegos = await contarTotalJuegos();
-    const totalPaginas = Math.ceil(totalJuegos / porPagina);
+    const totalPaginas = Math.ceil(totalJuegos / porPagina);//Redondea hacia arriba al entero más cercano
 
     const success = req.query.success || null; //para mostrar mensaje de exito de creacion de usuario
 

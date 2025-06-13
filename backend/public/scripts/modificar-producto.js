@@ -62,7 +62,7 @@ modificarButton.addEventListener("click", async () => {
 
     try{
         const res = await fetch('/juegos/modificar-producto', {
-            method:'POST',
+            method:'PUT',
             headers:{
                 'Content-Type': 'application/json'
             },
