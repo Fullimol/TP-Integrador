@@ -20,7 +20,7 @@ router.delete('/delete/:id', eliminarJuego);
 
 //actualizar un juego por id
 router.get('/modificar-producto/:id', mostrarFormularioModificar); //Se ejecuta automatico cuando presionamos el botón "modificar" en cualquiera de los productos. Se los redirije al URL modificar-producto/idCorrespondienteDelJuego y por defecto se ejecuta el metodo GET
-router.post('/modificar-producto', actualizarJuego);
+router.put('/modificar-producto', actualizarJuego);
 
 //agregar un juego nuevo (definición de ruta en servidor express para manejar solicitudes tipo post, la función que se pasa como parametro es para saber que hacer con los datos)
 router.post('/add', agregarJuego);
