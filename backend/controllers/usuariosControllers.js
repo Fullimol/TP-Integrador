@@ -1,18 +1,18 @@
-const {getUsuarioPorEmail, selectUsuarios, agregarUsuario } = require("../models/usuariosModels");
+const {getUsuarioPorEmail, agregarUsuario } = require("../models/usuariosModels");
 const { generarJWT } = require('../utils/jwt');
 const bcrypt = require('bcrypt');
 
 
 
 // aca tengo que hacer la función para traer los usuarios
-async function getUsuarios(req, res) {
+/*async function getUsuarios(req, res) {
     try {
         const usuarios = await selectUsuarios();
         res.json(usuarios);
     } catch (err) {
         res.status(500).json({ error: "Error al obtener los usuarios" });
     }
-}
+}*/
 
 //funcion de login
 async function loginUsuario(req, res) {
@@ -22,7 +22,7 @@ async function loginUsuario(req, res) {
     const usuario = await getUsuarioPorEmail(email); //obtengo el usuario por su email
 
     if (!usuario) {
-      return res.redirect('/usuarios/login?error=' + encodeURIComponent('Usuario no encontrado'));
+      return res.redirect('/usuarios/login?error=' + encodeURIComponent('Usuario inexistente'));
     }
 
   const coincideContrasenia = await bcrypt.compare(password, usuario.password);
@@ -99,4 +99,4 @@ async function crearAdmin(req, res) {
 
 
 
-module.exports = { getUsuarios, loginUsuario, logoutUsuario, crearAdmin };
+module.exports = { loginUsuario, logoutUsuario, crearAdmin };

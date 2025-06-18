@@ -2,13 +2,13 @@ const { conectar } = require("../db");
 
 //              **************      TABLA USUARIOS       **************
 // obtener los usuraios de BD
-async function selectUsuarios() {
+/*async function selectUsuarios() {
     const db = await conectar();
     const qry = 'SELECT * FROM usuarios';
     const [rows] = await db.execute(qry);
     await db.end();
     return rows;
-} //VER LUEGO SI SE VA A UTILIZAR ESTA FUNCION O NO
+}*/
 
 //Funcion para obtener el usuario por el email
 async function getUsuarioPorEmail(email) {
@@ -34,4 +34,4 @@ async function agregarUsuario(email, password) {
 
 //              **************      FIN TABLA USUARIOS       **************
 
-module.exports = { selectUsuarios, getUsuarioPorEmail, agregarUsuario };
+module.exports = { getUsuarioPorEmail, agregarUsuario };
