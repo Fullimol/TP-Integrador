@@ -8,8 +8,14 @@ function controlDeAccesoJWT(req, res, next) {
   //encodeURIComponent transforma el texto legible en un formato seguro para URLs
   // (Algunos caracteres, como espacios, tildes, comas o signos especiales, no se pueden usar directamente en una URL)
   
-  if (!token || !payload) { //si el token o el payload no existen: redirijo a pantalla login c/msj de sesion expirada
-    return res.redirect('/usuarios/login?error=' + encodeURIComponent('Sesión expirada. Por favor, vuelva a iniciar sesión.'));
+  if (!token || !payload) { //Si el token no existe o no es válido (el payload no pudo ser decodificado), significa que la sesión expiró o es inválida
+    const esApi = req.xhr || (req.headers.accept && req.headers.accept.indexOf('json') > -1); //Detectamos si la petición viene desde JS (fetch/AJAX) o desde una navegación tradicional
+    if (esApi) { //Si la petición viene de una llamada fetch() o AJAX:
+      //Enviamos una respuesta con código HTTP 401 (no autorizado) y un mensaje en formato JSON. Esto permite que el frontend (dashboard.js) lo detecte y redirija manualmente al login
+      return res.status(401).json({ error: 'Sesión expirada. Por favor, vuelva a iniciar sesión.' });
+    } else { //Si es una navegación tradicional (por ejemplo, el usuario escribió la URL o hizo clic en un enlace), lo redirigimos directamente a la pantalla de login, con un mensaje en la URL
+        return res.redirect('/usuarios/login?error=' + encodeURIComponent('Sesión expirada. Por favor, vuelva a iniciar sesión.'));
+      }
   }
 
   //si el token es valido, genero uno nuevo en c/interaccion del admin c/las pantallas
