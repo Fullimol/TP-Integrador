@@ -122,7 +122,7 @@ function filtrarProductos(filtro) {
     const cards = document.querySelectorAll('.card');
 
     cards.forEach(card => {
-        const plataforma = card.dataset.plataforma;
+        const plataforma = card.dataset.plataforma; //lee el valor de su atributo data-plataforma, que se había guardado antes con: ""card.dataset.plataforma = producto.plataforma.toLowerCase()"";
         if (filtro === 'todos' || plataforma === filtro) {
             card.classList.remove('hidden');
         } else {
@@ -151,9 +151,9 @@ function agregarAlCarrito(id) {
 function quitarDelCarrito(id) {
     const index = carrito.findIndex(p => p.id === id);
 
-    if (index !== -1) {
+    if (index !== -1) { //Si el índice no es -1, entonces existe y se puede eliminar.
         if (carrito[index].cantidad > 1) {
-            carrito[index].cantidad -= 1;
+            carrito[index].cantidad -= 1; //resto 1 cantidad y actualizo el carrito
         } else {
             carrito.splice(index, 1); // eliminar del carrito
         }
@@ -164,8 +164,8 @@ function quitarDelCarrito(id) {
     console.log(carrito);
 }
 
-contenedor.addEventListener('click', (e) => {
-    const id = parseInt(e.target.dataset.id);
+contenedor.addEventListener('click', (e) => { // Escucha todos los clics que ocurren dentro del elemento contenedor
+    const id = parseInt(e.target.dataset.id); // aca abtengo el id del producto (card) al que se le dio click
 
     if (e.target.classList.contains('agregar-button')) {
         agregarAlCarrito(id);

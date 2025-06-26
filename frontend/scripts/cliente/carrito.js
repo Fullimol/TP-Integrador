@@ -8,8 +8,9 @@ const cancelarCompraButton = document.getElementById("cancelarCompraButton");
 
 // obtener carrito del localStorage
 const carrito = JSON.parse(localStorage.getItem('carrito')) || [];
-const productos = JSON.parse(localStorage.getItem('productos')) || [];
+const productos = [];
 console.log(carrito);
+
 
 
 function mostrarEnCarrito() {
