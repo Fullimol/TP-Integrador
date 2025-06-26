@@ -29,7 +29,7 @@ function mostrarTicket() {
 
 // Generar PDF:
 btnImprimirTicket.addEventListener('click', () => {
-    html2pdf().from(contenedor).save();
+    html2pdf().from(contenedor).save(); // .from() toma el elemento HTML y .save() lo descarga como PDF
     console.log("Ticket impreso");
 });
 
