@@ -24,7 +24,7 @@ const Juego = require("../models/juegoORM.js");
 
 const getJuegos = async (req, res) => {
     try {
-        const juegos = await Juego.findAll();
+        const juegos = await Juego.findAll(); // esto lo proporciona "sequelize" para traer todos los juegos de la bd.
         res.status(200).json(juegos);
     } catch (error) {
         console.error("Error en getJuegos:", error);
@@ -61,7 +61,7 @@ async function actualizarJuego(req, res) {
 async function agregarJuego(req, res) {
     try {
         const { nombre, plataforma, precio, imagen } = req.body; //Aca se recibe el cuerpo del post
-        await agregar(nombre, plataforma, precio, imagen, 1);
+        await agregar(nombre, plataforma, precio, imagen, 1); // 1 significa que el juego está disponible
         res.json({ message: 'Juego agregado correctamente' });
     } catch (err) {
         res.status(500).json({ error: 'Error al agregar el juego' });

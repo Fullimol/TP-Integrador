@@ -10,6 +10,8 @@ npm install jsonwebtoken
 npm install cookie-parser
 npm install bcrypt
 npm install html2pdf.js
+npm install sequelize
+
 
 Usar en consola sobre la carpeta backend "nodemon api.js" para levantar servidor.
 
