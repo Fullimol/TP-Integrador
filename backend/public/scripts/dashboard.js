@@ -28,21 +28,22 @@ function activarBotonesDeJuegos() {
                 if (!confirm('¿Estás seguro de que querés desactivar este juego?')) return;
                 try {
                     //Envia una solicitud PUT a esa ruta del backend para que el juego sea marcado como no disponible.
-                    const res = await fetch(`/juegos/desactivar/${id}`, { method: 'PUT' ,
-                    headers: {
-                        'X-Requested-With': 'XMLHttpRequest' //Encabezado especial para indicar que esta es una solicitud AJAX (fetch)
-                        // Esto permite que el backend sepa que no debe hacer un "redirect" tradicional
+                    const res = await fetch(`/juegos/desactivar/${id}`, {
+                        method: 'PUT',
+                        headers: {
+                            'X-Requested-With': 'XMLHttpRequest' //Encabezado especial para indicar que esta es una solicitud AJAX (fetch)
+                            // Esto permite que el backend sepa que no debe hacer un "redirect" tradicional
+                        }
+                    });
+
+                    //Si el token expiró o no es válido, el servidor devuelve estado 401 (no autorizado). Aca verifica el token mediante el middleware de proteccion de rutas (controlDeAccesoJWT). Esta ruta está en "juegosRutas.js"
+                    if (res.status === 401) {
+                        alert('Los cambios no han podido ser guardados.\nSesión expirada, serás redirigido al login'); //En ese caso, mostramos un mensaje y redirigimos manualmente al login
+                        window.location.href = '/usuarios/login?error=' + encodeURIComponent('Sesión expirada. Por favor, vuelva a iniciar sesión.');
+                        return; //Cortamos la ejecución del resto del código
                     }
-                });
 
-                //Si el token expiró o no es válido, el servidor devuelve estado 401 (no autorizado)
-                if (res.status === 401) {
-                    alert('Los cambios no han podido ser guardados.\nSesión expirada, serás redirigido al login'); //En ese caso, mostramos un mensaje y redirigimos manualmente al login
-                    window.location.href = '/usuarios/login?error=' + encodeURIComponent('Sesión expirada. Por favor, vuelva a iniciar sesión.');
-                    return; //Cortamos la ejecución del resto del código
-                }
-
-                    const data = await res.json(); //Aguarda la respuesta
+                    const data = await res.json(); //Aguarda la respuesta del servidor
                     alert(data.message || data.error);
                     if (res.ok) location.reload(); //Si la respuesta dio bien recarga la página con el jugo desactivado
                 } catch (error) {
@@ -68,7 +69,8 @@ function activarBotonesDeJuegos() {
                 try {
 
                     //Envia una solicitud PUT a esa ruta del backend para que el juego sea marcado como disponible.
-                    const res = await fetch(`/juegos/reactivar/${id}`, { method: 'PUT',
+                    const res = await fetch(`/juegos/reactivar/${id}`, {
+                        method: 'PUT',
                         headers: {
                             'X-Requested-With': 'XMLHttpRequest' // Indica que es una solicitud AJAX para evitar redirecciones automáticas
                         }
