@@ -18,10 +18,10 @@ router.get('/logout', logoutUsuario);
 router.use(controlDeAccesoJWT); //las rutas que se definan a partir de esta linea pasan por el middleware de proteccion de rutas
 
 router.get('/alta-admin', (req, res) => {
-  res.render('alta-admin', { error: null });
+  res.render('alta-admin', { error: null }); // renderiza el archivo ejs
 });
 
-router.post('/alta-admin', crearAdmin);
+router.post('/alta-admin', crearAdmin); // la peticion POST se hace con el SUBMIT del form de alta-admin.ejs, que envia los datos que tengan atributo "name" al controlador crearAdmin
 
 
 module.exports = router;

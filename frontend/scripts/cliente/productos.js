@@ -33,11 +33,11 @@ function obtenerProductos() {
 
 
 function mostrarProductosPaginados() {
-    const inicio = (paginaActual - 1) * productosPorPagina;
-    const fin = inicio + productosPorPagina;
-    const productosPagina = productos.slice(inicio, fin);
+    const inicio = (paginaActual - 1) * productosPorPagina; // obtengo el indice de inicio de los juegos. (EJ: 0 * 8 = muestro desde el indice 0)
+    const fin = inicio + productosPorPagina; // obtengo el indice de fin de los juegos. (EJ: 0+8 = muestro hasta el indice 8)
+    const productosPagina = productos.slice(inicio, fin); //devuelve nuevo array con los juegos entre ambos indices.
     textoPaginaActual.innerHTML = `Pagina ${paginaActual} de ${Math.ceil(productos.length / productosPorPagina)}`;
-    mostrarProductos(productosPagina);
+    mostrarProductos(productosPagina); // los muestro con la misma funcion que crear el innerHTML de los juegos.
 }
 
 

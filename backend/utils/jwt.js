@@ -4,7 +4,7 @@ const secret = process.env.CLAVE_SECRETA;
 
 //Funcion para generar token
 function generarJWT(payload) {
-  const token = jwt.sign(payload, secret, {expiresIn: '30s', algorithm: 'HS256'}); //token expira en 30seg
+  const token = jwt.sign(payload, secret, {expiresIn: '30s', algorithm: 'HS256'}); // "secret" es la clave secreta que se usa para firmar el token, "expiresIn" es el tiempo de expiración del token (en este caso 30 segundos), y "algorithm" es el algoritmo de firma que se utiliza (HS256 en este caso).
   return token;
 }
 
