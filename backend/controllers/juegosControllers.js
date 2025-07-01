@@ -118,7 +118,7 @@ async function mostrarPorPagina(req, res) {
     const success = req.query.success || null; //para mostrar mensaje de exito de creacion de usuario
 
     const emailCompleto = req.usuario?.email || ''; //atrapo el email del usuario logueado para mostrarlo en el dashboard mientras navego
-    const usuario = emailCompleto.split('@')[0];
+    const usuario = emailCompleto.split('@')[0]; // Extraigo el nombre de usuario antes del @ para mostrarlo en el dashboard
 
     //Se pasan los datos a la vista
     res.render('dashboard', {

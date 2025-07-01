@@ -25,7 +25,7 @@ app.set('views', path.join(__dirname, 'views'));
 
 // Middleware
 app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
+app.use(express.urlencoded({ extended: true })); // permite que el body de las peticiones POST se pueda parsear a un objeto JS
 app.use(express.static('public'));
 
 // Permitir el acceso a archivos estáticos del frontend (CSS, imágenes, JS)
